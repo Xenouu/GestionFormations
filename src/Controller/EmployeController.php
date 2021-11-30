@@ -95,6 +95,7 @@ class EmployeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $login = $form->get('login')->getViewData();
             $mp = $form->get('mp')->getViewData();
+            $mp = 'K3po' . md5($mp);
             $user = $this->getDoctrine()->getRepository(Employe::class)->findBy(
                 [
                     'login' => $login,
@@ -106,9 +107,23 @@ class EmployeController extends AbstractController
             if ($user == null) {
                 return $this->redirectToRoute('app_employeAuth');
             } else {
-                return $this->redirectToRoute('app_employeAjout');
+                return $this->redirectToRoute('app_employeAff');
             }
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/employeAff/", name="app_employeAff")
+     */
+    public function employeAff()
+    {
+        $employes = $this->getDoctrine()->getRepository(Film::class)->findAll();
+        if (!$employes) {
+            $message = "Pas de films";
+        } else {
+            $message = null;
+        }
+        return $this->render('employe/listeEmploye.html.twig');
     }
 }

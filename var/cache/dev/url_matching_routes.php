@@ -17,6 +17,7 @@ return [
         '/employeAjout' => [[['_route' => 'app_employeAjout', '_controller' => 'App\\Controller\\EmployeController::AjoutEmploye'], null, null, null, true, false, null]],
         '/employeAjoutHash' => [[['_route' => 'app_employeAjoutHash', '_controller' => 'App\\Controller\\EmployeController::registration'], null, null, null, true, false, null]],
         '/employeAuth' => [[['_route' => 'app_employeAuth', '_controller' => 'App\\Controller\\EmployeController::authEmploye'], null, null, null, true, false, null]],
+        '/employeAff' => [[['_route' => 'app_employeAff', '_controller' => 'App\\Controller\\EmployeController::employeAff'], null, null, null, true, false, null]],
         '/formation' => [[['_route' => 'formation', '_controller' => 'App\\Controller\\FormationController::index'], null, null, null, false, false, null]],
         '/formationAjout' => [[['_route' => 'app_formationAjout', '_controller' => 'App\\Controller\\FormationController::AjoutFormation'], null, null, null, true, false, null]],
         '/inscription' => [[['_route' => 'inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],

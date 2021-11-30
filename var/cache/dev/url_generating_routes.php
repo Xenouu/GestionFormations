@@ -18,6 +18,7 @@ return [
     'app_employeAjout' => [[], ['_controller' => 'App\\Controller\\EmployeController::AjoutEmploye'], [], [['text', '/employeAjout/']], [], []],
     'app_employeAjoutHash' => [[], ['_controller' => 'App\\Controller\\EmployeController::registration'], [], [['text', '/employeAjoutHash/']], [], []],
     'app_employeAuth' => [[], ['_controller' => 'App\\Controller\\EmployeController::authEmploye'], [], [['text', '/employeAuth/']], [], []],
+    'app_employeAff' => [[], ['_controller' => 'App\\Controller\\EmployeController::employeAff'], [], [['text', '/employeAff/']], [], []],
     'formation' => [[], ['_controller' => 'App\\Controller\\FormationController::index'], [], [['text', '/formation']], [], []],
     'app_formationAjout' => [[], ['_controller' => 'App\\Controller\\FormationController::AjoutFormation'], [], [['text', '/formationAjout/']], [], []],
     'inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], []],
