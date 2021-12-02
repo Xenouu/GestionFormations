@@ -19,6 +19,29 @@ class InscriptionRepository extends ServiceEntityRepository
         parent::__construct($registry, Inscription::class);
     }
 
+    public function findInscriptionEA($idEmploye)
+    {
+        $e = 'E';
+        $a = 'A';
+        $queryBuilder = $this
+            ->createQueryBuilder('inscription')
+            ->setParameter('e', $e)
+            ->setParameter('a', $a)
+            ->setParameter('idEmploye', $idEmploye)
+            ->where('(inscription.statut = :e or inscription.statut = :a) and inscription.employe = :idEmploye');
+        return $queryBuilder->getQUery()->getResult();
+    }
+
+    public function findFormationE()
+    {
+        $e = 'E';
+        $queryBuilder = $this
+            ->createQueryBuilder('inscription')
+            ->setParameter('e', $e)
+            ->where('inscription.statut = :e');
+        return $queryBuilder->getQUery()->getResult();
+    }
+
     // /**
     //  * @return Inscription[] Returns an array of Inscription objects
     //  */

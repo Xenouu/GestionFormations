@@ -116,7 +116,7 @@ class EmployeController extends AbstractController
                 $session = new Session();
                 $session->set('employeId', $user[0]->getId());
                 $session->set('employeStatut', $user[0]->getStatut());
-                return $this->redirectToRoute('app_employeAff');
+                return $this->redirectToRoute('app_formationAff');
             }
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
@@ -128,13 +128,20 @@ class EmployeController extends AbstractController
      */
     public function formationAff()
     {
-        $formation = $this->getDoctrine()->getRepository(Formation::class)->findAll();
-        if (!$formation) {
+        $idEmploye = $this->get('session')->get('employeId');
+        $formationDispo = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+        // $inscription = $this->getDoctrine()->getRepository(Inscription::class)->findBy(['employe_id' => $idEmploye, 'statut' => 'A'], [], 4);
+        $inscription = $this
+            ->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findInscriptionEA($idEmploye);
+
+        if (!$formationDispo) {
             $message = "Pas de formation";
         } else {
             $message = null;
         }
-        return $this->render('employe/listeFormations.html.twig', array('ensFormations' => $formation, 'message' => $message));
+        return $this->render('employe/listeFormations.html.twig', array('ensFormations' => $formationDispo, 'ensInscription' => $inscription, 'message' => $message));
     }
 
 

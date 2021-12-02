@@ -16,8 +16,15 @@
     {% endfor %}
     </div>
     <div>
-        <h2>Liste des formations déjà inscrit</h2>
-
+        <h2>Liste des formations déjà inscrites</h2>
+        {% for inscription in ensInscription %}
+            {{ inscription.formation.id }}
+            Date de début : {{ inscription.formation.dateDebut|date("m/d/Y") }}
+            Nombre d'heures : {{ inscription.formation.nbreHeures }} 
+            Département : {{ inscription.formation.departement }}
+            Etat : {{ inscription.statut }}
+            <br>
+        {% endfor %}
     </div>
 
 {% endblock %}

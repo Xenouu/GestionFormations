@@ -41,4 +41,46 @@ class InscriptionController extends AbstractController
 
         return $this->render('inscription/editer.html.twig', array('form' => $form->createView()));
     }
+
+    /**
+     * @Route("/gestionInscription", name="app_gestion_inscription")
+     */
+    public function GestionInscription()
+    {
+        $inscriptions = $this
+            ->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findFormationE();
+        $message = "";
+        if (!($inscriptions)) {
+            $message = "Il n'y a pas de formation en cours";
+        }
+        return $this->render('inscription/listeInscriptions.html.twig', array('ensInscriptions' => $inscriptions, 'message' => $message));
+    }
+    /**
+     * @Route("/supprimerInscription/{id}", name="app_supp_inscription")
+     */
+    public function SupprimerFormation($id)
+    {
+        $inscription = $this->getDoctrine()->getRepository(Inscription::class)->find($id);
+        $manager = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $manager->remove($inscription);
+        $manager->flush();
+        return $this->redirectToRoute('app_gestion_inscription');
+    }
+    /**
+     * @Route("/accepteInscription", name="app_accepte_Inscription")
+     */
+    public function AccepteInscription()
+    {
+    }
+    /**
+     * @Route("/refuseInscription", name="app_refuse_Inscription")
+     */
+    public function RefuseInscription()
+    {
+    }
 }
