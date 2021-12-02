@@ -122,3 +122,10 @@ bf45c7,::1,GET,http://localhost/gestionFormations/inscriptionEmployeFormation/1,
 47b800,::1,GET,http://localhost/gestionFormations/formationAff/,1638453716,,200
 086bdf,::1,GET,http://localhost/gestionFormations/inscriptionEmployeFormation/2,1638453722,,302
 a6e429,::1,GET,http://localhost/gestionFormations/formationAff/,1638453722,,200
+a17b79,127.0.0.1,GET,http://127.0.0.1:8001/,1638456789,,404
+22e7d7,127.0.0.1,GET,http://127.0.0.1:8001/gestionInscription,1638456819,,200
+369667,127.0.0.1,GET,http://127.0.0.1:8001/gestionInscription,1638456891,,200
+e3fc45,127.0.0.1,GET,http://127.0.0.1:8001/gererFormation,1638456895,,200
+b239c9,127.0.0.1,GET,http://127.0.0.1:8001/formationAff/,1638456948,,200
+365901,127.0.0.1,GET,http://127.0.0.1:8001/inscriptionEmployeFormation/3,1638456954,8beeec,500
+8beeec,127.0.0.1,GET,http://127.0.0.1:8001/inscriptionEmployeFormation/3,1638456954,,500

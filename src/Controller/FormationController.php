@@ -41,4 +41,32 @@ class FormationController extends AbstractController
 
         return $this->render('formation/editer.html.twig', array('form' => $form->createView()));
     }
+    /**
+     * @Route("/gererFormation", name="app_gererFormation")
+     */
+    public function GererFormation()
+    { 
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+        if(!$formation)
+        {
+            $message = "Pas de formation";
+        } else {
+            $message = null;
+        }
+        return $this->render('formation/gererFormation.html.twig', array('ensFormations' => $formation, 'message' => $message));
+    }
+    /**
+     * @Route("/supprimerFormation/{id}", name="app_supp_formation")
+     */
+    public function SupprimerFormation($id)
+    {
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
+        $manager = $this
+            ->getDoctrine()
+            ->getManager();
+            
+        $manager->remove($formation);
+        $manager->flush();
+        return $this->redirectToRoute('app_gererFormation');
+    }
 }
