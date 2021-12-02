@@ -17,7 +17,7 @@ return [
         '/employeAjout' => [[['_route' => 'app_employeAjout', '_controller' => 'App\\Controller\\EmployeController::AjoutEmploye'], null, null, null, true, false, null]],
         '/employeAjoutHash' => [[['_route' => 'app_employeAjoutHash', '_controller' => 'App\\Controller\\EmployeController::registration'], null, null, null, true, false, null]],
         '/employeAuth' => [[['_route' => 'app_employeAuth', '_controller' => 'App\\Controller\\EmployeController::authEmploye'], null, null, null, true, false, null]],
-        '/employeAff' => [[['_route' => 'app_employeAff', '_controller' => 'App\\Controller\\EmployeController::employeAff'], null, null, null, true, false, null]],
+        '/formationAff' => [[['_route' => 'app_formationAff', '_controller' => 'App\\Controller\\EmployeController::formationAff'], null, null, null, true, false, null]],
         '/formation' => [[['_route' => 'formation', '_controller' => 'App\\Controller\\FormationController::index'], null, null, null, false, false, null]],
         '/formationAjout' => [[['_route' => 'app_formationAjout', '_controller' => 'App\\Controller\\FormationController::AjoutFormation'], null, null, null, true, false, null]],
         '/inscription' => [[['_route' => 'inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
@@ -42,6 +42,7 @@ return [
                     .')'
                     .'|error/(\\d+)(?:\\.([^/]++))?(*:159)'
                 .')'
+                .'|/inscriptionEmployeFormation/([^/]++)(*:205)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -51,8 +52,9 @@ return [
         101 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         114 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         124 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        159 => [
-            [['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null],
+        159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        205 => [
+            [['_route' => 'app_inscriptionEmployeFormation', '_controller' => 'App\\Controller\\EmployeController::inscriptionEmployeFormation'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

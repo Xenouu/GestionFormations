@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Espace Employe {% endblock %}
+
+{% block body %}
+    <h1>Espace Employe</h1>
+    <div>
+    <h2>Liste des formations disponibles<h2>
+    {% for formation in ensFormations %}
+    {{ formation.id }}
+    Date de début : {{ formation.dateDebut|date("m/d/Y") }}
+    Nombre d'heures : {{ formation.nbreHeures }} 
+    Département : {{ formation.departement }}
+    <a href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></br>
+    <br>
+    {% endfor %}
+    </div>
+    <div>
+        <h2>Liste des formations déjà inscrit</h2>
+
+    </div>
+
+{% endblock %}

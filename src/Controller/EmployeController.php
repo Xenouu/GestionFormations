@@ -3,14 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Employe;
+use App\Entity\Formation;
+use App\Entity\Inscription;
 use App\Form\EmployeType;
 use App\Form\AuthType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 
@@ -107,23 +111,52 @@ class EmployeController extends AbstractController
             if ($user == null) {
                 return $this->redirectToRoute('app_employeAuth');
             } else {
+
+                $session = new Session();
+                $session->set('employeId', $user[0]->getId());
+                $session->set('employeStatut', $user[0]->getStatut());
                 return $this->redirectToRoute('app_employeAff');
             }
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
     }
 
+
     /**
-     * @Route("/employeAff/", name="app_employeAff")
+     * @Route("/formationAff/", name="app_formationAff")
      */
-    public function employeAff()
+    public function formationAff()
     {
-        $employes = $this->getDoctrine()->getRepository(Film::class)->findAll();
-        if (!$employes) {
-            $message = "Pas de films";
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+        if (!$formation) {
+            $message = "Pas de formation";
         } else {
             $message = null;
         }
-        return $this->render('employe/listeEmploye.html.twig');
+        return $this->render('employe/listeFormations.html.twig', array('ensFormations' => $formation, 'message' => $message));
+    }
+
+
+
+    /**
+     * @Route("/inscriptionEmployeFormation/{id}", name="app_inscriptionEmployeFormation")
+     */
+    public function inscriptionEmployeFormation($id)
+    {
+        $idEmploye = $this->get('session')->get('employeId');
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
+        $employe = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+
+        $inscription = new Inscription();
+        $inscription->setStatut('E');
+        $inscription->setEmploye($employe);
+        $inscription->setFormation($formation);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($inscription);
+        $manager->flush();
+
+
+        return $this->redirectToRoute('app_formationAff');
     }
 }
