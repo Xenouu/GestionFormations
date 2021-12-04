@@ -7,7 +7,6 @@
     <div>
     <h2>Liste des formations disponibles<h2>
     {% for formation in ensFormations %}
-    {{ formation.id }}
     Date de début : {{ formation.dateDebut|date("m/d/Y") }}
     Nombre d'heures : {{ formation.nbreHeures }} 
     Département : {{ formation.departement }}
@@ -18,11 +17,16 @@
     <div>
         <h2>Liste des formations déjà inscrites</h2>
         {% for inscription in ensInscription %}
-            {{ inscription.formation.id }}
             Date de début : {{ inscription.formation.dateDebut|date("m/d/Y") }}
             Nombre d'heures : {{ inscription.formation.nbreHeures }} 
             Département : {{ inscription.formation.departement }}
-            Etat : {{ inscription.statut }}
+            Etat :  {% if inscription.statut == 'A'%}
+                Accepter
+                    {% elseif inscription.statut == 'R'%}
+                Refuser
+                    {% elseif inscription.statut == 'E'%}
+                En cours
+                {% endif %}
             <br>
         {% endfor %}
     </div>

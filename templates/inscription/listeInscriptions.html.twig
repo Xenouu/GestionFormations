@@ -12,11 +12,7 @@
     Employé : {{ inscription.employe.nom }}  {{ inscription.employe.prenom }}<br/>
     Nombres d'heures : {{ inscription.formation.nbreHeures }}<br/>
     Departement : {{ inscription.formation.departement }} <br/>
-    <button><a href="{{ path('app_supp_formation', {'id' : inscription.id }) }}">Accepter</a></button><br/>
-    <button><a href="{{ path('app_supp_inscription', {'id' : inscription.id }) }}">Refuser</a></button><br/>
-
+    <button><a href="{{ path('app_accepte_Inscription', {'id' : inscription.id }) }}">Accepter</a></button><br/>
+    <button><a href="{{ path('app_refuse_Inscription', {'id' : inscription.id }) }}">Refuser</a></button><br/>
 {% endfor %}
-<br>
-<br>
-<button><a href="{{ path('app_formationAjout') }}">Ajouter</a></button><br/>
 {% endblock %}

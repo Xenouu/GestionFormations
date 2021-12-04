@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Employe;
 use App\Entity\Inscription;
 use App\Form\InscriptionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,12 @@ class InscriptionController extends AbstractController
      */
     public function GestionInscription()
     {
+        $idEmploye = $this->get('session')->get('employeId');
+        $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        if ($user->getStatut() == 1)
+        {
+            return $this->redirectToRoute('app_formationAff');
+        }
         $inscriptions = $this
             ->getDoctrine()
             ->getRepository(Inscription::class)
@@ -72,15 +79,33 @@ class InscriptionController extends AbstractController
         return $this->redirectToRoute('app_gestion_inscription');
     }
     /**
-     * @Route("/accepteInscription", name="app_accepte_Inscription")
+     * @Route("/accepteInscription/{id}", name="app_accepte_Inscription")
      */
-    public function AccepteInscription()
+    public function AccepteInscription($id)
     {
+        $inscription = $this->getDoctrine()->getRepository(Inscription::class)->find($id);
+        $inscription->setStatut('A');
+        $manager = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $manager->persist($inscription);
+        $manager->flush();
+        return $this->redirectToRoute('app_gestion_inscription');
     }
     /**
-     * @Route("/refuseInscription", name="app_refuse_Inscription")
+     * @Route("/refuseInscription/{id}", name="app_refuse_Inscription")
      */
-    public function RefuseInscription()
+    public function RefuseInscription($id)
     {
+        $inscription = $this->getDoctrine()->getRepository(Inscription::class)->find($id);
+        $inscription->setStatut('R');
+        $manager = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $manager->persist($inscription);
+        $manager->flush();
+        return $this->redirectToRoute('app_gestion_inscription');
     }
 }
