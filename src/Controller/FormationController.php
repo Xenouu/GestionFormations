@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Employe;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,12 @@ class FormationController extends AbstractController
      */
     public function GererFormation()
     {
+        $idEmploye = $this->get('session')->get('employeId');
+        $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        if ($user->getStatut() == 1)
+        {
+            return $this->redirectToRoute('app_formationAff');
+        }
         $formation = $this->getDoctrine()->getRepository(Formation::class)->findAll();
         if (!$formation) {
             $message = "Pas de formation";

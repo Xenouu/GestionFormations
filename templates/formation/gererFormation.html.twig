@@ -1,8 +1,8 @@
 {%  extends 'base.html.twig' %}
 
 {% block title %}Formation Inscrit{% endblock %}
-
 {% block body %}
+    </br>
     {% if (message) %}
         {{ message }}
     {% endif %}
@@ -11,8 +11,7 @@
 
     Date debut: {{ formation.dateDebut|date("m/d/Y") }} <br/>
     Nombres d'heures : {{ formation.nbreHeures }}<br/>
-    Departement : {{ formation.departement }} <br/>
-    <button><a href="{{ path('app_supp_formation', {'id' : formation.id }) }}">Supprimer</a></button><br/>
+    Departement : {{ formation.departement }} <br/><br/>
 {% endfor %}
 <button><a href="{{ path('app_formationAjout') }}">Ajouter</a></button><br/>
 {% endblock %}

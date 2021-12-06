@@ -90,7 +90,7 @@ class EmployeController extends AbstractController
     //
 
     /**
-     * @Route("/employeAuth/", name="app_employeAuth")
+     * @Route("/", name="app_employeAuth")
      */
     public function authEmploye(Request $request, $employe = null)
     {
@@ -166,5 +166,16 @@ class EmployeController extends AbstractController
 
 
         return $this->redirectToRoute('app_formationAff');
+    }
+
+    /**
+     * @Route("/employeDeco/", name="app_employeDeco")
+     */
+    public function employeDeco()
+    {
+        $this->get('session')->remove('employeId');
+        $this->get('session')->remove('employeStatut');
+
+        return $this->redirectToRoute('app_employeAuth');
     }
 }
