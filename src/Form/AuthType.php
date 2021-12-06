@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type as SFType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class AuthType extends AbstractType
 {
@@ -14,7 +15,10 @@ class AuthType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('mp')
+            ->add('mp', PasswordType::class, [
+                'required' => true,
+                'label' => 'Mot de passe',
+            ])
             ->add('connection', SFType\SubmitType::class);
     }
 

@@ -8,7 +8,7 @@
     {% endif %}
 {% for inscription in ensInscriptions %}
     <b>{{ inscription.formation.produit.libelle }} </b><br/>
-
+    Id : {{ inscription.id }}</br>
     Employé : {{ inscription.employe.nom }}  {{ inscription.employe.prenom }}<br/>
     Nombres d'heures : {{ inscription.formation.nbreHeures }}<br/>
     Departement : {{ inscription.formation.departement }} <br/>
