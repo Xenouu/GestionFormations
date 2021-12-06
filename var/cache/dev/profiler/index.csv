@@ -193,3 +193,4 @@ e795ee,::1,GET,http://localhost/gestionFormations/formationAjout/,1638461998,,20
 18e338,::1,GET,http://localhost/gestionFormations/formationAjout/,1638462065,,200
 d70140,::1,POST,http://localhost/gestionFormations/formationAjout/,1638462070,,302
 b2f528,::1,GET,http://localhost/gestionFormations/gererFormation,1638462070,,200
+395e5e,::1,GET,http://localhost/gestionFormations/formationAff/,1638462844,,200
