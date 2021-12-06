@@ -5,28 +5,33 @@
 {% block body %}
     <h1>Espace Employe</h1>
     <div>
-    <h2>Liste des formations disponibles<h2>
-    {% for formation in ensFormations %}
-    Date de début : {{ formation.dateDebut|date("m/d/Y") }}
-    Nombre d'heures : {{ formation.nbreHeures }} 
-    Département : {{ formation.departement }}
-    <a href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></br>
-    <br>
-    {% endfor %}
+        <br><h2>Liste des formations disponibles</h2><br>
+        <h4>
+            {% for formation in ensFormations %}
+                Date de début : {{ formation.dateDebut|date("m/d/Y") }}
+                Nombre d'heures : {{ formation.nbreHeures }} 
+                Département : {{ formation.departement }}
+                <a href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></br>
+        <h4>
+            <br>
+        {% endfor %}
     </div>
     <div>
-        <h2>Liste des formations déjà inscrites</h2>
+        <h2>Liste des formations déjà inscrites</h2><br>
         {% for inscription in ensInscription %}
+        <h4>
             Date de début : {{ inscription.formation.dateDebut|date("m/d/Y") }}
             Nombre d'heures : {{ inscription.formation.nbreHeures }} 
             Département : {{ inscription.formation.departement }}
+            
             Etat :  {% if inscription.statut == 'A'%}
                 Accepté
                     {% elseif inscription.statut == 'R'%}
                 Refusé
                     {% elseif inscription.statut == 'E'%}
                 En cours
-                {% endif %}
+            {% endif %}
+            </h4>
             <br>
         {% endfor %}
     </div>
