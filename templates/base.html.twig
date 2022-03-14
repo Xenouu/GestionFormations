@@ -16,12 +16,36 @@
     </head>
     <body>
         {% block navbar %}
-                <ul class="nav">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <img src="../image/logo.png"  height="80">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                        <li class="nav-item">
+                           <a class="nav-link" href="{{ path('app_formationAff') }}">Formation(s) Disponible(s)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_gestion_inscription') }}">Gestion Inscription</a>
+                    </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_gererFormation') }}">Gestion Formation</a>
+                    </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_employeDeco') }}">Déconnexion</a>
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+                {# <ul class="nav">
                     <a class="navbar-brand">
                         <img src="https://th.bing.com/th/id/R.fe9cbf34364812a5a20ca695e28deea5?rik=ZvneiEXOqYHCrw&pid=ImgRaw&r=0"  height="40">
                     </a>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_formationAff') }}">Formation(s) Disponible(s)</a>
+                        
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_gestion_inscription') }}">Gestion Inscription</a>
@@ -32,7 +56,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_employeDeco') }}">Déconnexion</a>
                     </li>
-                </ul>
+                </ul> #}
             {% endblock %}
         {% block body %}
         {% endblock %}

@@ -6,12 +6,27 @@
     {% if (message) %}
         {{ message }}
     {% endif %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Formation</th>
+        <th scope="col">Employé</th>
+        <th scope="col">Nombre d'heures</th>
+        <th scope="col">Departement</th>
+    </tr>
+  </thead>
+  <tbody>
 {% for formation in ensFormations %}
-    <b>{{ formation.produit.libelle }} </b><br/>
-
-    Date debut: {{ formation.dateDebut|date("m/d/Y") }} <br/>
-    Nombres d'heures : {{ formation.nbreHeures }}<br/>
-    Departement : {{ formation.departement }} <br/><br/>
+    <tr>
+      <th scope="row">{{ formation.produit.libelle }}</th>
+      <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
+      <td>{{ formation.nbreHeures }}h</td>
+      <td>{{ formation.departement }}</td>
+    </tr>
 {% endfor %}
-<button><a href="{{ path('app_formationAjout') }}">Ajouter</a></button><br/>
+    </tbody>
+</table>
+<h3>Ajouter une nouvelle formation :</h3>
+<br/>
+<a class="btn btn-primary" href="{{ path('app_formationAjout') }}">Ajouter</a>
 {% endblock %}
