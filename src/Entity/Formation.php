@@ -38,6 +38,11 @@ class Formation
      */
     private $produit;
 
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Formation
     public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

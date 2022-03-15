@@ -20,6 +20,7 @@ return [
     'app_employeAuth' => [[], ['_controller' => 'App\\Controller\\EmployeController::authEmploye'], [], [['text', '/']], [], []],
     'app_formationAff' => [[], ['_controller' => 'App\\Controller\\EmployeController::formationAff'], [], [['text', '/formationAff/']], [], []],
     'app_inscriptionEmployeFormation' => [['id'], ['_controller' => 'App\\Controller\\EmployeController::inscriptionEmployeFormation'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/inscriptionEmployeFormation']], [], []],
+    'app_gererEmployes' => [[], ['_controller' => 'App\\Controller\\EmployeController::gererEmployes'], [], [['text', '/gererEmployes']], [], []],
     'app_employeDeco' => [[], ['_controller' => 'App\\Controller\\EmployeController::employeDeco'], [], [['text', '/employeDeco/']], [], []],
     'formation' => [[], ['_controller' => 'App\\Controller\\FormationController::index'], [], [['text', '/formation']], [], []],
     'app_formationAjout' => [[], ['_controller' => 'App\\Controller\\FormationController::AjoutFormation'], [], [['text', '/formationAjout/']], [], []],

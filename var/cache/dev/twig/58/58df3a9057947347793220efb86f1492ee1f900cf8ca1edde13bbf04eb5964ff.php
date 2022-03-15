@@ -160,7 +160,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         // line 19
         echo "                <ul class=\"nav\">
                     <a class=\"navbar-brand\">
-                        <img src=\"https://th.bing.com/th/id/R.fe9cbf34364812a5a20ca695e28deea5?rik=ZvneiEXOqYHCrw&pid=ImgRaw&r=0\"  height=\"40\">
+                        <img src=\"https://media.discordapp.net/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"100\">
                     </a>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
@@ -248,7 +248,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         {% block navbar %}
                 <ul class=\"nav\">
                     <a class=\"navbar-brand\">
-                        <img src=\"https://th.bing.com/th/id/R.fe9cbf34364812a5a20ca695e28deea5?rik=ZvneiEXOqYHCrw&pid=ImgRaw&r=0\"  height=\"40\">
+                        <img src=\"https://media.discordapp.net/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"100\">
                     </a>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('app_formationAff') }}\">Formation(s) Disponible(s)</a>

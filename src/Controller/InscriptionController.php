@@ -50,8 +50,7 @@ class InscriptionController extends AbstractController
     {
         $idEmploye = $this->get('session')->get('employeId');
         $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
-        if ($user->getStatut() == 1)
-        {
+        if ($user->getStatut() == 1) {
             return $this->redirectToRoute('app_formationAff');
         }
         $inscriptions = $this

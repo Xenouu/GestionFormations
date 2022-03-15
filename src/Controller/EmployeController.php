@@ -154,18 +154,35 @@ class EmployeController extends AbstractController
         $idEmploye = $this->get('session')->get('employeId');
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
         $employe = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        $exist = $this->getDoctrine()->getRepository(Inscription::class)->findBy(
+            [
+                'employe' => $employe,
+                'formation' => $formation
+            ],
+            [],
+            1
+        );
+        if ($exist == null) {
+            $inscription = new Inscription();
+            $inscription->setStatut('E');
+            $inscription->setEmploye($employe);
+            $inscription->setFormation($formation);
 
-        $inscription = new Inscription();
-        $inscription->setStatut('E');
-        $inscription->setEmploye($employe);
-        $inscription->setFormation($formation);
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($inscription);
-        $manager->flush();
-
-
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($inscription);
+            $manager->flush();
+        } else {
+            echo 'non inscris';
+        }
         return $this->redirectToRoute('app_formationAff');
+    }
+
+
+    /**
+     * @Route("/gererEmployes", name="app_gererEmployes")
+     */
+    public function gererEmployes()
+    {
     }
 
     /**
