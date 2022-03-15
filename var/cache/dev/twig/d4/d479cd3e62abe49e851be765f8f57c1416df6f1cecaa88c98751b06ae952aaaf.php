@@ -65,9 +65,24 @@ class __TwigTemplate_b8557ef64586be2edebba9c80a703167f9fdfe73928129384ca47dc1f57
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "    ";
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 4, $this->source); })()), 'form');
+        echo "    <div class=\"container m-4\">
+        <div class=\"row\">
+            <div class=\"col-8\">
+                <h1>Sight Reading Master</h1>
+                <h2>Espace de connexion</h2>
+                <div class=\"container\">
+                    <div class=\"row\">
+                        <div class=\"col-4\">
+                            ";
+        // line 12
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), 'form');
         echo "
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -89,7 +104,7 @@ class __TwigTemplate_b8557ef64586be2edebba9c80a703167f9fdfe73928129384ca47dc1f57
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  78 => 12,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -97,7 +112,21 @@ class __TwigTemplate_b8557ef64586be2edebba9c80a703167f9fdfe73928129384ca47dc1f57
         return new Source("{% extends 'baseAuth.html.twig' %}
 
 {% block body %}
-    {{ form(form)}}
+    <div class=\"container m-4\">
+        <div class=\"row\">
+            <div class=\"col-8\">
+                <h1>Sight Reading Master</h1>
+                <h2>Espace de connexion</h2>
+                <div class=\"container\">
+                    <div class=\"row\">
+                        <div class=\"col-4\">
+                            {{ form(form)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}", "employe/editer.html.twig", "D:\\taff\\Code\\Symfony\\gestionFormations\\templates\\employe\\editer.html.twig");
     }
 }

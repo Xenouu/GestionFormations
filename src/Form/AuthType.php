@@ -19,7 +19,7 @@ class AuthType extends AbstractType
                 'required' => true,
                 'label' => 'Mot de passe',
             ])
-            ->add('connection', SFType\SubmitType::class);
+            ->add('connexion', SFType\SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,35 +5,62 @@
 {% block body %}
     <h1>Espace Employe</h1>
     <div>
-        <br><h2>Liste des formations disponibles</h2><br>
-        <h4>
-            {% for formation in ensFormations %}
-                Date de début : {{ formation.dateDebut|date("m/d/Y") }}
-                Nombre d'heures : {{ formation.nbreHeures }} 
-                Département : {{ formation.departement }}
-                <a href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></br>
-        <h4>
-            <br>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heures</th>
+                    <th scope="col">Département</th>
+                    <th scope="col">S'inscrire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <br><h2>Liste des formations disponibles</h2><br>
+                    <h4>
+                        {% for formation in ensFormations %}
+                            <th scope="row"> {{ formation.id }} </th>
+                            <td> {{ formation.dateDebut|date("m/d/Y") }} </td>
+                            <td> {{ formation.nbreHeures }} </td>
+                            <td> {{ formation.departement }} </td>
+                            <td><a class="btn btn-primary" href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></td>
+                    <h4>
+                </tr>
+            </tbody>
         {% endfor %}
     </div>
     <div>
-        <h2>Liste des formations déjà inscrites</h2><br>
-        {% for inscription in ensInscription %}
-        <h4>
-            Date de début : {{ inscription.formation.dateDebut|date("m/d/Y") }}
-            Nombre d'heures : {{ inscription.formation.nbreHeures }} 
-            Département : {{ inscription.formation.departement }}
-            
-            Etat :  {% if inscription.statut == 'A'%}
-                Accepté
-                    {% elseif inscription.statut == 'R'%}
-                Refusé
-                    {% elseif inscription.statut == 'E'%}
-                En cours
-            {% endif %}
-            </h4>
-            <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heures</th>
+                    <th scope="col">Département</th>
+                    <th scope="col">Etat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <br><h2>Liste des formations déjà inscrites</h2>
+                    <h4>
+                        {% for inscription in ensInscription %}
+                            <th scope="row"> {{ inscription.id }} </th>
+                            <td> {{ inscription.formation.dateDebut|date("m/d/Y") }} </td>
+                            <td> {{ inscription.formation.nbreHeures }}  </td>
+                            <td> {{ inscription.formation.departement }} </td>
+                            <td>Etat :  {% if inscription.statut == 'A'%}
+                                Accepté
+                                    {% elseif inscription.statut == 'R'%}
+                                Refusé
+                                    {% elseif inscription.statut == 'E'%}
+                                En cours
+                                {% endif %}</td>
+                    <h4>
+                </tr>
+            </tbody>
         {% endfor %}
     </div>
-
 {% endblock %}

@@ -6,13 +6,28 @@
     {% if (message) %}
         {{ message }}
     {% endif %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Employé</th>
+        <th scope="col">Nombre d'heures</th>
+        <th scope="col">Departement</th>
+        <th scope="col">Accepter</th>
+        <th scope="col">Refuser</th>
+    </tr>
+  </thead>
+  <tbody>
 {% for inscription in ensInscriptions %}
-    <b>{{ inscription.formation.produit.libelle }} </b><br/>
-    Id : {{ inscription.id }}</br>
-    Employé : {{ inscription.employe.nom }}  {{ inscription.employe.prenom }}<br/>
-    Nombres d'heures : {{ inscription.formation.nbreHeures }}<br/>
-    Departement : {{ inscription.formation.departement }} <br/>
-    <button><a href="{{ path('app_accepte_Inscription', {'id' : inscription.id }) }}">Accepter</a></button><br/>
-    <button><a href="{{ path('app_refuse_Inscription', {'id' : inscription.id }) }}">Refuser</a></button><br/>
+    <tr>
+      <th scope="row">{{ inscription.id }}</th>
+      <td>{{ inscription.employe.nom }}  {{ inscription.employe.prenom }}</td>
+      <td>{{ inscription.formation.nbreHeures }}h</td>
+      <td>{{ inscription.formation.departement }}</td>
+      <td><a class="btn btn-success" href="{{ path('app_accepte_Inscription', {'id' : inscription.id }) }}">Accepter</a></td>
+      <td><a class="btn btn-danger" href="{{ path('app_refuse_Inscription', {'id' : inscription.id }) }}">Refuser</a></td>  
+    </tr>
 {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

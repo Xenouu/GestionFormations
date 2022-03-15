@@ -68,10 +68,10 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         ";
         // line 18
         $this->displayBlock('navbar', $context, $blocks);
-        // line 37
+        // line 64
         echo "        ";
         $this->displayBlock('body', $context, $blocks);
-        // line 39
+        // line 66
         echo "    </body>
 </html>
 ";
@@ -158,36 +158,45 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "navbar"));
 
         // line 19
-        echo "                <ul class=\"nav\">
-                    <a class=\"navbar-brand\">
-                        <img src=\"https://media.discordapp.net/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"100\">
-                    </a>
-                    <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"";
-        // line 24
+        echo "                <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+                    <img src=\"https://cdn.discordapp.com/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"80\">
+                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                    </button>
+                    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+                        <ul class=\"navbar-nav\">
+                        <li class=\"nav-item\">
+                           <a class=\"nav-link\" href=\"";
+        // line 27
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_formationAff");
         echo "\">Formation(s) Disponible(s)</a>
-                    </li>
-                    <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"";
-        // line 27
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"";
+        // line 30
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gestion_inscription");
         echo "\">Gestion Inscription</a>
                     </li>
-                    <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"";
-        // line 30
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"";
+        // line 34
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererFormation");
         echo "\">Gestion Formation</a>
                     </li>
-                    <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"";
-        // line 33
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"";
+        // line 38
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_employeDeco");
         echo "\">Déconnexion</a>
-                    </li>
-                </ul>
-            ";
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+                ";
+        // line 63
+        echo "            ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -196,7 +205,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     }
 
-    // line 37
+    // line 64
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -206,7 +215,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 38
+        // line 65
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -223,7 +232,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     public function getDebugInfo()
     {
-        return array (  210 => 38,  200 => 37,  186 => 33,  180 => 30,  174 => 27,  168 => 24,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 39,  72 => 37,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
+        return array (  219 => 65,  209 => 64,  199 => 63,  191 => 38,  184 => 34,  177 => 30,  171 => 27,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 66,  72 => 64,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -246,12 +255,36 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
     </head>
     <body>
         {% block navbar %}
-                <ul class=\"nav\">
+                <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+                    <img src=\"https://cdn.discordapp.com/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"80\">
+                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                    </button>
+                    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+                        <ul class=\"navbar-nav\">
+                        <li class=\"nav-item\">
+                           <a class=\"nav-link\" href=\"{{ path('app_formationAff') }}\">Formation(s) Disponible(s)</a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('app_gestion_inscription') }}\">Gestion Inscription</a>
+                    </li>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('app_gererFormation') }}\">Gestion Formation</a>
+                    </li>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('app_employeDeco') }}\">Déconnexion</a>
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+                {# <ul class=\"nav\">
                     <a class=\"navbar-brand\">
                         <img src=\"https://media.discordapp.net/attachments/930401194818568222/943525414851186758/Screenshot_2022-02-14_at_16.51.27.png\"  height=\"100\">
                     </a>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"{{ path('app_formationAff') }}\">Formation(s) Disponible(s)</a>
+                        
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('app_gestion_inscription') }}\">Gestion Inscription</a>
@@ -260,9 +293,12 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                         <a class=\"nav-link\" href=\"{{ path('app_gererFormation') }}\">Gestion Formation</a>
                     </li>
                     <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"{{ path('app_gererEmployes') }}\">Gestion Employés</a>
+                    </li>
+                    <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('app_employeDeco') }}\">Déconnexion</a>
                     </li>
-                </ul>
+                </ul> #}
             {% endblock %}
         {% block body %}
         {% endblock %}
