@@ -6,6 +6,8 @@
     {% if (message) %}
         {{ message }}
     {% endif %}
+<div class="container" align="center">
+<div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
 <table class="table">
     <thead>
     <tr>
@@ -13,6 +15,7 @@
         <th scope="col">Employé</th>
         <th scope="col">Nombre d'heures</th>
         <th scope="col">Departement</th>
+        <th scope="col">Description</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +25,7 @@
       <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
       <td>{{ formation.nbreHeures }}h</td>
       <td>{{ formation.departement }}</td>
+      <td>{{ formation.Description }}</td>
     </tr>
 {% endfor %}
     </tbody>
@@ -29,4 +33,6 @@
 <h3>Ajouter une nouvelle formation :</h3>
 <br/>
 <a class="btn btn-primary" href="{{ path('app_formationAjout') }}">Ajouter</a>
+</div>
+</div>
 {% endblock %}

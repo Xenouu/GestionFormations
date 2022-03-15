@@ -65,9 +65,14 @@ class __TwigTemplate_d5d3302a17748ce1017ad07897dafab3d8ce3fac9ceae9390a5cbb73411
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "    ";
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 4, $this->source); })()), 'form');
+        echo "    <div class=\"container\">
+        <div class=\"row\">
+            ";
+        // line 6
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 6, $this->source); })()), 'form');
         echo "
+        </div>
+    </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -89,7 +94,7 @@ class __TwigTemplate_d5d3302a17748ce1017ad07897dafab3d8ce3fac9ceae9390a5cbb73411
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -97,7 +102,11 @@ class __TwigTemplate_d5d3302a17748ce1017ad07897dafab3d8ce3fac9ceae9390a5cbb73411
         return new Source("{% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form(form)}}
+    <div class=\"container\">
+        <div class=\"row\">
+            {{ form(form)}}
+        </div>
+    </div>
 {% endblock %}", "inscription/editer.html.twig", "D:\\taff\\Code\\Symfony\\gestionFormations\\templates\\inscription\\editer.html.twig");
     }
 }

@@ -21,6 +21,7 @@ class FormationType extends AbstractType
                 'class' => 'App\Entity\Produit',
                 'choice_label' => 'libelle',
             ))
+            ->add('description')
             ->add('save', SFType\SubmitType::class);;
     }
 

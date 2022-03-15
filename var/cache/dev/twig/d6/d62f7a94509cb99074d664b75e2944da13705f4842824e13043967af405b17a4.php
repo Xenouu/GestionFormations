@@ -65,9 +65,14 @@ class __TwigTemplate_a850c387dfcc9cdb7c006b3d59aac479cce0535c07fd56b8cfd1ee471d7
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "    ";
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 4, $this->source); })()), 'form');
+        echo "    <div class=\"container d-flex h-100\">
+        <div class=\"row align-self-center\">
+            ";
+        // line 6
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 6, $this->source); })()), 'form');
         echo "
+        </div>
+    </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -89,7 +94,7 @@ class __TwigTemplate_a850c387dfcc9cdb7c006b3d59aac479cce0535c07fd56b8cfd1ee471d7
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -97,7 +102,11 @@ class __TwigTemplate_a850c387dfcc9cdb7c006b3d59aac479cce0535c07fd56b8cfd1ee471d7
         return new Source("{% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form(form)}}
+    <div class=\"container d-flex h-100\">
+        <div class=\"row align-self-center\">
+            {{ form(form)}}
+        </div>
+    </div>
 {% endblock %}", "formation/editer.html.twig", "D:\\taff\\Code\\Symfony\\gestionFormations\\templates\\formation\\editer.html.twig");
     }
 }
