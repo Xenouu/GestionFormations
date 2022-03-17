@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerMVXYsGP\App_KernelDevDebugContainer([
     'container.build_hash' => 'MVXYsGP',
-    'container.build_id' => 'c67a53ef',
-    'container.build_time' => 1647346659,
+    'container.build_id' => '36f36720',
+    'container.build_time' => 1647355592,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerMVXYsGP');

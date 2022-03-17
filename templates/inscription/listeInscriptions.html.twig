@@ -30,8 +30,9 @@
       <td><a class="btn btn-danger" href="{{ path('app_refuse_Inscription', {'id' : inscription.id }) }}">Refuser</a></td>  
     </tr>
 {% endfor %}
-    </tbody>
+</tbody>
 </table>
+<a class="btn btn-primary" href="{{ path('app_gerer_Inscription') }}">Gerer les inscriptions</a>
 </div>
 </div>
 {% endblock %}

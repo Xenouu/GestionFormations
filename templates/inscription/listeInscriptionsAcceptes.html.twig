@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation Inscrit{% endblock %}
+
+{% block body %}
+    {% if (message) %}
+        {{ message }}
+    {% endif %}
+<div class="container" align="center">
+<div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Employé</th>
+        <th scope="col">Nombre d'heures</th>
+        <th scope="col">Departement</th>
+        <th scope="col">statut</th>
+        <th scope="col">Gérer</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for inscription in ensInscriptions %}
+    <tr>
+      <th scope="row">{{ inscription.id }}</th>
+      <td>{{ inscription.employe.nom }}  {{ inscription.employe.prenom }}</td>
+      <td>{{ inscription.formation.nbreHeures }}h</td>
+      <td>{{ inscription.formation.departement }}</td>
+      <td>{{ inscription.formation.statut }}</td>
+      <td>{{ inscription.formation.statut }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+<a class="btn btn-primary" href="{{ path('app_gerer_Inscription') }}">Gerer les inscriptions</a>
+</div>
+</div>
+{% endblock %}

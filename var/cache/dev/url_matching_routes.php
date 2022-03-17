@@ -26,6 +26,7 @@ return [
         '/inscription' => [[['_route' => 'inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
         '/inscriptionAjout' => [[['_route' => 'app_inscriptionAjout', '_controller' => 'App\\Controller\\InscriptionController::AjoutInscription'], null, null, null, true, false, null]],
         '/gestionInscription' => [[['_route' => 'app_gestion_inscription', '_controller' => 'App\\Controller\\InscriptionController::GestionInscription'], null, null, null, false, false, null]],
+        '/gererInscription' => [[['_route' => 'app_gerer_Inscription', '_controller' => 'App\\Controller\\InscriptionController::GererInscription'], null, null, null, true, false, null]],
         '/produit' => [[['_route' => 'produit', '_controller' => 'App\\Controller\\ProduitController::index'], null, null, null, false, false, null]],
         '/produitAjout' => [[['_route' => 'app_produitAjout', '_controller' => 'App\\Controller\\ProduitController::AjoutProduit'], null, null, null, true, false, null]],
     ],
