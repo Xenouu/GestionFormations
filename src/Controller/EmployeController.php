@@ -30,36 +30,40 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/employeAjout/", name="app_employeAjout")
-     */
-    public function AjoutEmploye(Request $request, $employe = null)
-    {
-        if ($employe == null) {
-            $employe = new Employe();
-        }
-        $form = $this->createForm(EmployeType::class, $employe);
-        $form->handleRequest($request);
+    // /**
+    //  * @Route("/employeAjout/", name="app_employeAjout")
+    //  */
+    // public function AjoutEmploye(Request $request, $employe = null)
+    // {
+    //permet d'ajouter un employé non chiffré
+    //     if ($employe == null) {
+    //         $employe = new Employe();
+    //     }
+    //     $form = $this->createForm(EmployeType::class, $employe);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employe);
-            $em->flush();
-            return $this->redirectToRoute('app_employeAjout');
-        }
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $em = $this->getDoctrine()->getManager();
+    //         $em->persist($employe);
+    //         $em->flush();
+    //         return $this->redirectToRoute('app_employeAjout');
+    //     }
 
-        return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
-    }
+    //     return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
+    // }
 
     /**
      * @Route("/employeAjoutHash/", name="app_employeAjoutHash")
      */
     public function registration(UserPasswordHasherInterface $passwordHasher, Request $request, $employe = null)
     {
-        // ... e.g. get the user data from a registration form
+        //Permet d'ajouter un employé avec un mot de passe hashé
+        //Si il n'existe, le créer
         if ($employe == null) {
             $employe = new Employe();
         }
+
+        //Form actions
         $form = $this->createForm(EmployeType::class, $employe);
         $form->handleRequest($request);
 
@@ -67,6 +71,8 @@ class EmployeController extends AbstractController
 
             // hash the password (based on the security.yaml config for the $user class)
             $mp = $form->get('mp')->getViewData();
+
+            //grain de sel + hashage
             $mp = 'K3po' . md5($mp);
             $employe->setMp($mp);
             $em = $this->getDoctrine()->getManager();
@@ -94,6 +100,7 @@ class EmployeController extends AbstractController
      */
     public function authEmploye(Request $request, $employe = null)
     {
+        //permet d'identifier un utilisateur avec un mot de passe hashé
         $form = $this->createForm(AuthType::class, $employe);
         $form->handleRequest($request);
 
@@ -128,6 +135,7 @@ class EmployeController extends AbstractController
      */
     public function formationAff()
     {
+        //affiche toutes les formations et toutes les formations auquel l'utilisateur s'est inscrit
         $idEmploye = $this->get('session')->get('employeId');
         $formationDispo = $this->getDoctrine()->getRepository(Formation::class)->findAll();
         // $inscription = $this->getDoctrine()->getRepository(Inscription::class)->findBy(['employe_id' => $idEmploye, 'statut' => 'A'], [], 4);
@@ -151,6 +159,7 @@ class EmployeController extends AbstractController
      */
     public function inscriptionEmployeFormation($id)
     {
+        //permet d'inscrire un employé à une formation
         $idEmploye = $this->get('session')->get('employeId');
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
         $employe = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
@@ -178,21 +187,60 @@ class EmployeController extends AbstractController
     }
 
 
-    /**
-     * @Route("/gererEmployes", name="app_gererEmployes")
-     */
-    public function gererEmployes()
-    {
-    }
+
 
     /**
      * @Route("/employeDeco/", name="app_employeDeco")
      */
     public function employeDeco()
     {
+        //Permet de se déconnecter
         $this->get('session')->remove('employeId');
         $this->get('session')->remove('employeStatut');
 
         return $this->redirectToRoute('app_employeAuth');
+    }
+
+    /**
+     * @Route("/gererEmployes", name="app_gererEmployes")
+     */
+    public function gererEmployes()
+    {
+        //Permet de voir tout les employés dans l'onglet gerer employés
+        $idEmploye = $this->get('session')->get('employeId');
+        $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        if ($user->getStatut() == 1) {
+            return $this->redirectToRoute('app_formationAff');
+        }
+        $employes = $this->getDoctrine()->getRepository(Employe::class)->findAll();
+        if (!$employes) {
+            $message = "Pas de formation";
+        } else {
+            $message = null;
+        }
+        return $this->render('employe/gererEmployes.html.twig', array('ensEmployes' => $employes, 'message' => $message));
+    }
+
+    /**
+     * @Route("/voirEmployeInscription/{id}", name="app_voirEmployeInscription")
+     */
+    public function voirEmployeInscription($id)
+    {
+        //Permet de voir les formations d'un employé
+        $idEmploye = $this->get('session')->get('employeId');
+        $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        if ($user->getStatut() == 1) {
+            return $this->redirectToRoute('app_formationAff');
+        }
+        $inscription = $this
+            ->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findInscriptionEA($id);
+        if (!$inscription) {
+            $message = "Pas d'inscriptions'";
+        } else {
+            $message = null;
+        }
+        return $this->render('employe/voirEmployesInscription.html.twig', array('ensInscriptions' => $inscription, 'message' => $message));
     }
 }

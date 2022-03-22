@@ -22,6 +22,11 @@ class Produit
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Service")
+     */
+    private $service;
+
     public function getId(): ?int
     {
         return $this->id;

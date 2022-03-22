@@ -21,9 +21,9 @@
   <tbody>
 {% for formation in ensFormations %}
     <tr>
-      <th scope="row">{{ formation.produit.libelle }}</th>
+      <th scope="row">{{ formation.produit.id }}</th>
       <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
-      <td>{{ formation.nbreHeures }}h</td>
+      <td>{{ formation.nbreHeures }}</td>
       <td>{{ formation.departement }}</td>
       <td>{{ formation.Description }}</td>
     </tr>

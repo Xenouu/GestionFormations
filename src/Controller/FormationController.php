@@ -27,6 +27,7 @@ class FormationController extends AbstractController
      */
     public function AjoutFormation(Request $request, $formation = null)
     {
+        //permet d'ajouter une formation dans la base de donnée via un form
         if ($formation == null) {
             $formation = new formation();
         }
@@ -48,6 +49,7 @@ class FormationController extends AbstractController
      */
     public function GererFormation()
     {
+        //Permet l'affichage pour l'onglet gerer formations
         $idEmploye = $this->get('session')->get('employeId');
         $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
         if ($user->getStatut() == 1) {
@@ -66,6 +68,7 @@ class FormationController extends AbstractController
      */
     public function SupprimerFormation($id)
     {
+        //Permet de supprimer un formation en fonction de son id
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
         $manager = $this
             ->getDoctrine()

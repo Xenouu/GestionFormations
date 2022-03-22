@@ -68,10 +68,10 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         ";
         // line 18
         $this->displayBlock('navbar', $context, $blocks);
-        // line 64
+        // line 67
         echo "        ";
         $this->displayBlock('body', $context, $blocks);
-        // line 66
+        // line 69
         echo "    </body>
 </html>
 ";
@@ -184,10 +184,16 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererFormation");
         echo "\">Gestion Formation</a>
                     </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"";
+        // line 37
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererEmployes");
+        echo "\">Gestion Employes</a>
+                    </li>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 38
+        // line 41
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_employeDeco");
         echo "\">Déconnexion</a>
                         </li>
@@ -195,7 +201,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                     </div>
                 </nav>
                 ";
-        // line 63
+        // line 66
         echo "            ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -205,7 +211,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     }
 
-    // line 64
+    // line 67
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -215,7 +221,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 65
+        // line 68
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -232,7 +238,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     public function getDebugInfo()
     {
-        return array (  219 => 65,  209 => 64,  199 => 63,  191 => 38,  184 => 34,  177 => 30,  171 => 27,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 66,  72 => 64,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
+        return array (  225 => 68,  215 => 67,  205 => 66,  197 => 41,  190 => 37,  184 => 34,  177 => 30,  171 => 27,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 69,  72 => 67,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -271,6 +277,9 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"{{ path('app_gererFormation') }}\">Gestion Formation</a>
+                    </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('app_gererEmployes') }}\">Gestion Employes</a>
                     </li>
                         </li>
                         <li class=\"nav-item\">

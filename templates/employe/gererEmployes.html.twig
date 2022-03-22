@@ -1,0 +1,31 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Formation Inscrit{% endblock %}
+{% block body %}
+    </br>
+    {% if (message) %}
+        {{ message }}
+    {% endif %}
+<div class="container" align="center">
+<div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Voir les inscriptions</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for employe in ensEmployes %}
+    <tr>
+      <td>{{ employe.nom }}</td>
+      <td>{{ employe.prenom }}</td>
+      <td><a class="btn btn-primary" href="{{ path('app_voirEmployeInscription', {'id' : employe.id }) }}">Voir</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

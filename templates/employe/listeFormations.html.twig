@@ -10,7 +10,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Heures</th>
                     <th scope="col">Département</th>
@@ -22,7 +21,6 @@
                     <br><h2>Liste des formations disponibles</h2><br>
                     <h4>
                         {% for formation in ensFormations %}
-                            <th scope="row"> {{ formation.id }} </th>
                             <td> {{ formation.dateDebut|date("m/d/Y") }} </td>
                             <td> {{ formation.nbreHeures }} </td>
                             <td> {{ formation.departement }} </td>
@@ -36,7 +34,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Heures</th>
                     <th scope="col">Département</th>
@@ -48,7 +45,6 @@
                     <br><h2>Liste des formations déjà inscrites</h2>
                     <h4>
                         {% for inscription in ensInscription %}
-                            <th scope="row"> {{ inscription.id }} </th>
                             <td> {{ inscription.formation.dateDebut|date("m/d/Y") }} </td>
                             <td> {{ inscription.formation.nbreHeures }}  </td>
                             <td> {{ inscription.formation.departement }} </td>
