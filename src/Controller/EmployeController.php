@@ -22,38 +22,6 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 class EmployeController extends AbstractController
 {
     /**
-     * @Route("/employe", name="employe")
-     */
-    public function index(): Response
-    {
-        return $this->render('employe/index.html.twig', [
-            'controller_name' => 'EmployeController',
-        ]);
-    }
-
-    // /**
-    //  * @Route("/employeAjout/", name="app_employeAjout")
-    //  */
-    // public function AjoutEmploye(Request $request, $employe = null)
-    // {
-    //permet d'ajouter un employé non chiffré
-    //     if ($employe == null) {
-    //         $employe = new Employe();
-    //     }
-    //     $form = $this->createForm(EmployeType::class, $employe);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $em = $this->getDoctrine()->getManager();
-    //         $em->persist($employe);
-    //         $em->flush();
-    //         return $this->redirectToRoute('app_employeAjout');
-    //     }
-
-    //     return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
-    // }
-
-    /**
      * @Route("/employeAjoutHash/", name="app_employeAjoutHash")
      */
     public function registration(UserPasswordHasherInterface $passwordHasher, Request $request, $employe = null)
@@ -73,7 +41,7 @@ class EmployeController extends AbstractController
             // hash the password (based on the security.yaml config for the $user class)
             $mp = $form->get('mp')->getViewData();
 
-            //grain de sel + hashage
+            //grain de sel + hachage
             $mp = 'K3po' . md5($mp);
             $employe->setMp($mp);
             $em = $this->getDoctrine()->getManager();
@@ -82,19 +50,7 @@ class EmployeController extends AbstractController
             return $this->redirectToRoute('app_employeAjoutHash');
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
-        // ...
     }
-
-    // public function delete(UserPasswordHasherInterface $passwordHasher, UserInterface $user)
-    // {
-    //     // ... e.g. get the password from a "confirm deletion" dialog
-    //     $plaintextPassword = ...;
-
-    //     if (!$passwordHasher->isPasswordValid($user, $plaintextPassword)) {
-    //         throw new AccessDeniedHttpException();
-    //     }
-    // }
-    //
 
     /**
      * @Route("/", name="app_employeAuth")
@@ -130,7 +86,6 @@ class EmployeController extends AbstractController
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
     }
 
-
     /**
      * @Route("/formationAff/", name="app_formationAff")
      */
@@ -138,28 +93,28 @@ class EmployeController extends AbstractController
     {
         //affiche toutes les formations et toutes les formations auquel l'utilisateur s'est inscrit
         $idEmploye = $this->get('session')->get('employeId');
-        $formationDispo = $this->getDoctrine()->getRepository(Formation::class)->findAll();
-        // $inscription = $this->getDoctrine()->getRepository(Inscription::class)->findBy(['employe_id' => $idEmploye, 'statut' => 'A'], [], 4);
+        $employe = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        $lstFormations = $this->getDoctrine()->getRepository(Formation::class)->findAll();
         $inscription = $this
             ->getDoctrine()
             ->getRepository(Inscription::class)
             ->findInscriptionEA($idEmploye);
-
-        if (!$formationDispo) {
+        // $formationDispo = $this->getDoctrine()->getRepository()
+        $ensServices = $employe->getServices();
+        if (!$ensServices) {
             $message = "Pas de formation";
         } else {
             $message = null;
         }
-        return $this->render('employe/listeFormations.html.twig', array('ensFormations' => $formationDispo, 'ensInscription' => $inscription, 'message' => $message));
+        return $this->render('employe/listeFormations.html.twig', array('ensServices' => $ensServices, 'ensInscriptions' => $inscription, 'ensFormations' => $lstFormations, 'message' => $message));
     }
-
-
 
     /**
      * @Route("/inscriptionEmployeFormation/{id}", name="app_inscriptionEmployeFormation")
      */
     public function inscriptionEmployeFormation($id)
     {
+        //dd($id);
         //permet d'inscrire un employé à une formation
         $idEmploye = $this->get('session')->get('employeId');
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
@@ -177,19 +132,31 @@ class EmployeController extends AbstractController
             $inscription->setStatut('E');
             $inscription->setEmploye($employe);
             $inscription->setFormation($formation);
-
+            
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($inscription);
             $manager->flush();
         } else {
-            echo 'non inscris';
+            echo 'non inscrit';
         }
         return $this->redirectToRoute('app_formationAff');
     }
 
+    /**
+     * @Route("/desinscriptionEmployeFormation/{id}", name="app_desinscriptionEmployeFormation")
+     */
+    public function désinscriptionEmployeFormation($id)
+    {
+        //permet de désinscrire un employé à une formation
+        $inscription = $this->getDoctrine()->getRepository(Inscription::class)->find($id);
+        $manager = $this
+            ->getDoctrine()
+            ->getManager();
 
-
-
+        $manager->remove($inscription);
+        $manager->flush();
+        return $this->redirectToRoute('app_formationAff');
+    }
     /**
      * @Route("/employeDeco/", name="app_employeDeco")
      */
@@ -223,27 +190,24 @@ class EmployeController extends AbstractController
     }
 
     /**
-     * @Route("/voirEmployeInscription/{id}", name="app_voirEmployeInscription")
+     * @Route("/voirEmployeServices/{id}", name="app_voirEmployeServices")
      */
-    public function voirEmployeInscription($id)
+    public function voirEmployeServices($id)
     {
         //Permet de voir les formations d'un employé
         $idEmploye = $this->get('session')->get('employeId');
-        $user = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
-        if ($user->getStatut() == 1) {
+        $userAdmin = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
+        $user = $this->getDoctrine()->getRepository(Employe::class)->find($id);
+        if ($userAdmin->getStatut() == 1) {
             return $this->redirectToRoute('app_formationAff');
         }
-        $inscription = $this
-            ->getDoctrine()
-            ->getRepository(Inscription::class)
-            ->findInscriptionEA($id);
-        if (!$inscription) {
+        $services = $this->getDoctrine()->getRepository(Services::class)->findAll();
+        if (!$services) {
             $message = "Pas d'inscriptions'";
         } else {
             $message = null;
         }
-        $services = $this->getDoctrine()->getRepository(Services::class)->findAll();
-        // $servicesEmploye = $user.Services
-        return $this->render('employe/voirEmployesInscription.html.twig', array('ensInscriptions' => $inscription, 'message' => $message, 'ensServicesName' => $services));
+        $servicesEmploye = $user->getServices();
+        return $this->render('employe/voirEmployesServices.html.twig', array('employe' => $user, 'ensServices' => $services, 'message' => $message, 'ensServicesByEmploye' => $servicesEmploye));
     }
 }

@@ -6,37 +6,76 @@
     <br>
     <div class="container" align="center">
         <div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
-        <h1>Espace Employe</h1>
+        <h1>Espace Employé :</h1>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Heures</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Service</th>
                     <th scope="col">Département</th>
-                    <th scope="col">S'inscrire</th>
+                    <th scope="col">Heures</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col">Gérer</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <br><h2>Liste des formations disponibles</h2><br>
+                    <br><h2>Liste des Formations Disponibles :</h2><br>
                     <h4>
-                        {% for formation in ensFormations %}
-                            <td> {{ formation.dateDebut|date("m/d/Y") }} </td>
-                            <td> {{ formation.nbreHeures }} </td>
-                            <td> {{ formation.departement }} </td>
-                            <td><a class="btn btn-primary" href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></td>
+                        {# parcours tous les services aux quelles l'employé est adhérent #}
+                        {% for service in ensServices %}
+                            {# parcours l'ensemble des formations disponible #}
+                            {% for formation in ensFormations %}
+                                {% set nonInscrit = true %}
+                                {# SI l'id du produit associé au service en cours est égal à l'id du produit de la formation en cours #}
+                                {% if (service.Produit.id == formation.Produit.id) %}
+                                    <tr>
+                                        <td> {{ formation.Produit.libelle }}
+                                        <td> {{ service.nom }}
+                                        <td> {{ formation.departement }}
+                                        <td> {{ formation.nbreHeures }} </td>
+                                        <td> {{ formation.dateDebut|date("m/d/Y") }} </td>
+                                        <td> {{ formation.Description }}</td>
+                                        {# parcours les formations aux quelles l'employés est déjà inscrit #}
+                                        {% for formationInscrit in ensInscriptions %}
+                                            {# SI il est déjà inscrit à cette formation affiche l'état de l'inscription #}
+                                            {% if (formation.id == formationInscrit.formation.id) %}
+                                                <td>{% if formationInscrit.statut == 'A'%}
+                                                        Accepté
+                                                    {% elseif formationInscrit.statut == 'R'%}
+                                                        Refusé
+                                                    {% elseif formationInscrit.statut == 'E'%}
+                                                        En cours
+                                                    {% endif %}</td>
+                                                {% set nonInscrit = false %}
+                                                <td><a class="btn btn-danger" href="{{path('app_desinscriptionEmployeFormation', { 'id': formationInscrit.id })}}">se désinscrire</a></td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {# SI il n'est pas inscrit #}
+                                        {% if (nonInscrit == true) %}
+                                            <td> Non inscrit </td>
+                                            <td><a class="btn btn-success" href="{{path('app_inscriptionEmployeFormation', { 'id': formation.id })}}">s'inscrire</a></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        {% endfor %}
                     <h4>
                 </tr>
             </tbody>
-        {% endfor %}
+        
     </div>
-    <div>
+    {# <div>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Heures</th>
                     <th scope="col">Département</th>
+                    <th scope="col">Service</th>
                     <th scope="col">Etat</th>
                 </tr>
             </thead>
@@ -59,7 +98,7 @@
                 </tr>
             </tbody>
         {% endfor %}
-        </div>
+        </div> #}
         </div>
     </div>
 {% endblock %}

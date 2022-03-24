@@ -41,7 +41,7 @@ class InscriptionRepository extends ServiceEntityRepository
             ->where('inscription.statut = :e');
         return $queryBuilder->getQUery()->getResult();
     }
-
+    
     // /**
     //  * @return Inscription[] Returns an array of Inscription objects
     //  */

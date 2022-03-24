@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Employe;
 use App\Entity\Services;
 use App\Form\ServicesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,16 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ServicesController extends AbstractController
 {
-    /**
-     * @Route("/services", name="services")
-     */
-    public function index(): Response
-    {
-        return $this->render('services/index.html.twig', [
-            'controller_name' => 'ServicesController',
-        ]);
-    }
-
     /**
      * @Route("/servicesAjout/", name="app_servicesAjout")
      */

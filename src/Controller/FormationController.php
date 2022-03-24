@@ -13,16 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/formation", name="formation")
-     */
-    public function index(): Response
-    {
-        return $this->render('formation/index.html.twig', [
-            'controller_name' => 'FormationController',
-        ]);
-    }
-
-    /**
      * @Route("/formationAjout/", name="app_formationAjout")
      */
     public function AjoutFormation(Request $request, $formation = null)

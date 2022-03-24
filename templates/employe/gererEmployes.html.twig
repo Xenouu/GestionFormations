@@ -13,7 +13,7 @@
     <tr>
         <th scope="col">Nom</th>
         <th scope="col">Prénom</th>
-        <th scope="col">Voir les inscriptions</th>
+        <th scope="col">Voir les services</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +21,7 @@
     <tr>
       <td>{{ employe.nom }}</td>
       <td>{{ employe.prenom }}</td>
-      <td><a class="btn btn-primary" href="{{ path('app_voirEmployeInscription', {'id' : employe.id }) }}">Voir</a></td>
+      <td><a class="btn btn-primary" href="{{ path('app_voirEmployeServices', {'id' : employe.id }) }}">Voir</a></td>
     </tr>
 {% endfor %}
     </tbody>

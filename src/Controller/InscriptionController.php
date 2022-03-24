@@ -13,16 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 class InscriptionController extends AbstractController
 {
     /**
-     * @Route("/inscription", name="inscription")
-     */
-    public function index(): Response
-    {
-        return $this->render('inscription/index.html.twig', [
-            'controller_name' => 'InscriptionController',
-        ]);
-    }
-
-    /**
      * @Route("/inscriptionAjout/", name="app_inscriptionAjout")
      */
     public function AjoutInscription(Request $request, $inscription = null)

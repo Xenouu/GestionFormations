@@ -1,0 +1,46 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Formation Inscrit{% endblock %}
+{% block body %}
+    </br>
+    {% if (message) %}
+        {{ message }}
+    {% endif %}
+<div class="container" align="center">
+<div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
+
+<h2> Employé : {{ employe.nom }} {{ employe.prenom }} </h2>
+</br></br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Services</th>
+        <th scope="col">Gérer</th>
+        <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for service in ensServices %}
+    {% set boolEmploye = true %}
+    <tr>
+        <td>{{ service.nom }}</td>
+        {% for serviceByEmploye in ensServicesByEmploye %}
+                {% if (service.id == serviceByEmploye.id) %}
+                    <td><a class="btn btn-danger" href="{{path('app_serviceRemoveEmploye', { 'idEmploye': employe.id, 'idService': service.id })}}">Retirer</a></td>
+                    <td>Adhérent</td>
+                    {% set boolEmploye = false %}
+                {% endif %}
+        {% endfor %}
+        {% if (boolEmploye) %}
+            <td><a class="btn btn-success" href="{{path('app_serviceAddEmploye', { 'idEmploye': employe.id, 'idService': service.id })}}">Ajouter</a></td>
+            <td>Non Adhérent</td>
+        {% endif %}
+      <td>
+    </tr>
+{% endfor %}
+
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}
