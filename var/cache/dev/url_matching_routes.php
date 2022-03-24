@@ -19,6 +19,7 @@ return [
         '/formationAff' => [[['_route' => 'app_formationAff', '_controller' => 'App\\Controller\\EmployeController::formationAff'], null, null, null, true, false, null]],
         '/employeDeco' => [[['_route' => 'app_employeDeco', '_controller' => 'App\\Controller\\EmployeController::employeDeco'], null, null, null, true, false, null]],
         '/gererEmployes' => [[['_route' => 'app_gererEmployes', '_controller' => 'App\\Controller\\EmployeController::gererEmployes'], null, null, null, false, false, null]],
+        '/employe/services' => [[['_route' => 'employe_services', '_controller' => 'App\\Controller\\EmployeServicesController::index'], null, null, null, false, false, null]],
         '/formation' => [[['_route' => 'formation', '_controller' => 'App\\Controller\\FormationController::index'], null, null, null, false, false, null]],
         '/formationAjout' => [[['_route' => 'app_formationAjout', '_controller' => 'App\\Controller\\FormationController::AjoutFormation'], null, null, null, true, false, null]],
         '/gererFormation' => [[['_route' => 'app_gererFormation', '_controller' => 'App\\Controller\\FormationController::GererFormation'], null, null, null, false, false, null]],
@@ -27,6 +28,8 @@ return [
         '/gestionInscription' => [[['_route' => 'app_gestion_inscription', '_controller' => 'App\\Controller\\InscriptionController::GestionInscription'], null, null, null, false, false, null]],
         '/produit' => [[['_route' => 'produit', '_controller' => 'App\\Controller\\ProduitController::index'], null, null, null, false, false, null]],
         '/produitAjout' => [[['_route' => 'app_produitAjout', '_controller' => 'App\\Controller\\ProduitController::AjoutProduit'], null, null, null, true, false, null]],
+        '/services' => [[['_route' => 'services', '_controller' => 'App\\Controller\\ServicesController::index'], null, null, null, false, false, null]],
+        '/servicesAjout' => [[['_route' => 'app_servicesAjout', '_controller' => 'App\\Controller\\ServicesController::AjoutServices'], null, null, null, true, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

@@ -19,6 +19,15 @@ class EmployeRepository extends ServiceEntityRepository
         parent::__construct($registry, Employe::class);
     }
 
+    public function findServicesEmploye($idEmploye)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('services_employe')
+            ->setParameter('idEmploye', $idEmploye)
+            ->where('services_employe.employe_id = :idEmploye');
+        return $queryBuilder->getQUery()->getResult();
+    }
+
     // /**
     //  * @return Employe[] Returns an array of Employe objects
     //  */

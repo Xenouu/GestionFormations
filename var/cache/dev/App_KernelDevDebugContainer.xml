@@ -339,6 +339,13 @@
         <argument type="service" id=".service_locator.W9y3dzm.App\Controller\EmployeController"/>
       </call>
     </service>
+    <service id="App\Controller\EmployeServicesController" class="App\Controller\EmployeServicesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\EmployeServicesController"/>
+      </call>
+    </service>
     <service id="App\Controller\FormationController" class="App\Controller\FormationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -360,6 +367,13 @@
         <argument type="service" id=".service_locator.W9y3dzm.App\Controller\ProduitController"/>
       </call>
     </service>
+    <service id="App\Controller\ServicesController" class="App\Controller\ServicesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\ServicesController"/>
+      </call>
+    </service>
     <service id="App\Form\AuthType" class="App\Form\AuthType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -373,6 +387,9 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ServicesType" class="App\Form\ServicesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\EmployeRepository" class="App\Repository\EmployeRepository" autowire="true" autoconfigure="true">
@@ -392,6 +409,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -977,6 +998,7 @@
         <argument>App\Form\FormationType</argument>
         <argument>App\Form\InscriptionType</argument>
         <argument>App\Form\ProduitType</argument>
+        <argument>App\Form\ServicesType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1382,7 +1404,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.olQPtUJ"/>
+      <argument type="service" id=".service_locator.KCwWRiY"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4446,7 +4468,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.sz49f5V"/>
+      <argument type="service" id=".service_locator.MknH4_0"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -5595,6 +5617,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EmployeController" class="App\Controller\EmployeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EmployeController" class="App\Controller\EmployeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\EmployeController" class="App\Controller\EmployeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EmployeServicesController" class="App\Controller\EmployeServicesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EmployeServicesController" class="App\Controller\EmployeServicesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\EmployeServicesController" class="App\Controller\EmployeServicesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FormationController" class="App\Controller\FormationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FormationController" class="App\Controller\FormationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\FormationController" class="App\Controller\FormationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5604,6 +5629,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ServicesController" class="App\Controller\ServicesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ServicesController" class="App\Controller\ServicesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ServicesController" class="App\Controller\ServicesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AuthType" class="App\Form\AuthType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\AuthType" class="App\Form\AuthType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EmployeType" class="App\Form\EmployeType" autowire="true" abstract="true"/>
@@ -5614,6 +5642,8 @@
     <service id=".abstract.instanceof.App\Form\InscriptionType" class="App\Form\InscriptionType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ServicesType" class="App\Form\ServicesType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ServicesType" class="App\Form\ServicesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EmployeRepository" class="App\Repository\EmployeRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\EmployeRepository" class="App\Repository\EmployeRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FormationRepository" class="App\Repository\FormationRepository" autowire="true" abstract="true"/>
@@ -5624,6 +5654,8 @@
     <service id=".abstract.instanceof.App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.0GV1BZZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6020,7 +6052,7 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.olQPtUJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.KCwWRiY" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AuthType" type="service_closure" id="App\Form\AuthType"/>
@@ -6028,6 +6060,7 @@
         <argument key="App\Form\FormationType" type="service_closure" id="App\Form\FormationType"/>
         <argument key="App\Form\InscriptionType" type="service_closure" id="App\Form\InscriptionType"/>
         <argument key="App\Form\ProduitType" type="service_closure" id="App\Form\ProduitType"/>
+        <argument key="App\Form\ServicesType" type="service_closure" id="App\Form\ServicesType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -6219,7 +6252,7 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.sz49f5V" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.MknH4_0" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\EmployeRepository" type="service_closure" id="App\Repository\EmployeRepository"/>
@@ -6227,6 +6260,7 @@
         <argument key="App\Repository\InscriptionRepository" type="service_closure" id="App\Repository\InscriptionRepository"/>
         <argument key="App\Repository\ProduitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
         <argument key="App\Repository\ServiceRepository" type="service_closure" id="App\Repository\ServiceRepository"/>
+        <argument key="App\Repository\ServicesRepository" type="service_closure" id="App\Repository\ServicesRepository"/>
       </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6302,6 +6336,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.W9y3dzm" method="withContext"/>
     </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\EmployeServicesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\EmployeServicesController"/>
+      <argument>App\Controller\EmployeServicesController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
     <service id=".service_locator.W9y3dzm.App\Controller\FormationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\FormationController"/>
       <argument>App\Controller\FormationController</argument>
@@ -6317,6 +6357,12 @@
     <service id=".service_locator.W9y3dzm.App\Controller\ProduitController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ProduitController"/>
       <argument>App\Controller\ProduitController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\ServicesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ServicesController"/>
+      <argument>App\Controller\ServicesController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.W9y3dzm" method="withContext"/>
     </service>

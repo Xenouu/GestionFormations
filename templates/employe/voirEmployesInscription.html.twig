@@ -20,6 +20,27 @@
       <td>{{ inscription.formation.produit.libelle }}</td>
     </tr>
 {% endfor %}
+
+    </tbody>
+</table>
+</br></br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Services</th>
+        <th scope="col">Ajouter</th>
+        <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for Service in ensServicesName %}
+    <tr>
+      <td>{{ Service }}</td>
+      <td>{{ Service }}</td>
+      <td>{{ Service }}</td>
+    </tr>
+{% endfor %}
+
     </tbody>
 </table>
 </div>

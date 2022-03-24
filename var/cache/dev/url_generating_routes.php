@@ -22,6 +22,7 @@ return [
     'app_employeDeco' => [[], ['_controller' => 'App\\Controller\\EmployeController::employeDeco'], [], [['text', '/employeDeco/']], [], []],
     'app_gererEmployes' => [[], ['_controller' => 'App\\Controller\\EmployeController::gererEmployes'], [], [['text', '/gererEmployes']], [], []],
     'app_voirEmployeInscription' => [['id'], ['_controller' => 'App\\Controller\\EmployeController::voirEmployeInscription'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/voirEmployeInscription']], [], []],
+    'employe_services' => [[], ['_controller' => 'App\\Controller\\EmployeServicesController::index'], [], [['text', '/employe/services']], [], []],
     'formation' => [[], ['_controller' => 'App\\Controller\\FormationController::index'], [], [['text', '/formation']], [], []],
     'app_formationAjout' => [[], ['_controller' => 'App\\Controller\\FormationController::AjoutFormation'], [], [['text', '/formationAjout/']], [], []],
     'app_gererFormation' => [[], ['_controller' => 'App\\Controller\\FormationController::GererFormation'], [], [['text', '/gererFormation']], [], []],
@@ -34,5 +35,7 @@ return [
     'app_refuse_Inscription' => [['id'], ['_controller' => 'App\\Controller\\InscriptionController::RefuseInscription'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/refuseInscription']], [], []],
     'produit' => [[], ['_controller' => 'App\\Controller\\ProduitController::index'], [], [['text', '/produit']], [], []],
     'app_produitAjout' => [[], ['_controller' => 'App\\Controller\\ProduitController::AjoutProduit'], [], [['text', '/produitAjout/']], [], []],
+    'services' => [[], ['_controller' => 'App\\Controller\\ServicesController::index'], [], [['text', '/services']], [], []],
+    'app_servicesAjout' => [[], ['_controller' => 'App\\Controller\\ServicesController::AjoutServices'], [], [['text', '/servicesAjout/']], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
 ];

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employe;
 use App\Entity\Formation;
+use App\Entity\Services;
 use App\Entity\Inscription;
 use App\Form\EmployeType;
 use App\Form\AuthType;
@@ -16,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 class EmployeController extends AbstractController
 {
@@ -123,7 +124,7 @@ class EmployeController extends AbstractController
                 $session = new Session();
                 $session->set('employeId', $user[0]->getId());
                 $session->set('employeStatut', $user[0]->getStatut());
-                return $this->redirectToRoute('app_formationAff');
+                return $this->redirectToRoute('app_formationAff', array('statutEmploye' => $user[0]->getStatut()));
             }
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
@@ -241,6 +242,8 @@ class EmployeController extends AbstractController
         } else {
             $message = null;
         }
-        return $this->render('employe/voirEmployesInscription.html.twig', array('ensInscriptions' => $inscription, 'message' => $message));
+        $services = $this->getDoctrine()->getRepository(Services::class)->findAll();
+        // $servicesEmploye = $user.Services
+        return $this->render('employe/voirEmployesInscription.html.twig', array('ensInscriptions' => $inscription, 'message' => $message, 'ensServicesName' => $services));
     }
 }
