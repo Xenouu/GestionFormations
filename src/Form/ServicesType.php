@@ -6,7 +6,6 @@ use App\Entity\Services;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type as SFType;
 
 class ServicesType extends AbstractType
@@ -15,10 +14,6 @@ class ServicesType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('produit', EntityType::class, array(
-                'class' => 'App\Entity\Produit',
-                'choice_label' => 'libelle',
-            ))
             ->add('save', SFType\SubmitType::class);;
     }
 

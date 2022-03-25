@@ -31,14 +31,14 @@ class Services
     private $employe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Produit")
-     * @ORM\JoinColumn()
+     * @ORM\OneToMany(targetEntity="Produit", mappedBy="services")
      */
     private $produit;
 
     public function __construct()
     {
         $this->employe = new ArrayCollection();
+        $this->produit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,14 +82,32 @@ class Services
         return $this;
     }
 
-    public function getProduit(): ?Produit
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduit(): Collection
     {
         return $this->produit;
     }
 
-    public function setProduit(?Produit $produit): self
+    public function addProduit(Produit $produit): self
     {
-        $this->produit = $produit;
+        if (!$this->produit->contains($produit)) {
+            $this->produit[] = $produit;
+            $produit->setServices($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produit->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getServices() === $this) {
+                $produit->setServices(null);
+            }
+        }
 
         return $this;
     }

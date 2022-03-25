@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,12 @@ class Produit
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Services", inversedBy="produit")
+     * @ORM\JoinColumn()
+     */
+    private $services;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +43,18 @@ class Produit
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getServices(): ?Services
+    {
+        return $this->services;
+    }
+
+    public function setServices(?Services $services): self
+    {
+        $this->services = $services;
 
         return $this;
     }

@@ -408,10 +408,6 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
     <service id="App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -4468,7 +4464,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.MknH4_0"/>
+      <argument type="service" id=".service_locator.kU69sMF"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -5652,8 +5648,6 @@
     <service id=".abstract.instanceof.App\Repository\InscriptionRepository" class="App\Repository\InscriptionRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\ServiceRepository" class="App\Repository\ServiceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ServicesRepository" class="App\Repository\ServicesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.0GV1BZZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6252,14 +6246,13 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.MknH4_0" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.kU69sMF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\EmployeRepository" type="service_closure" id="App\Repository\EmployeRepository"/>
         <argument key="App\Repository\FormationRepository" type="service_closure" id="App\Repository\FormationRepository"/>
         <argument key="App\Repository\InscriptionRepository" type="service_closure" id="App\Repository\InscriptionRepository"/>
         <argument key="App\Repository\ProduitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
-        <argument key="App\Repository\ServiceRepository" type="service_closure" id="App\Repository\ServiceRepository"/>
         <argument key="App\Repository\ServicesRepository" type="service_closure" id="App\Repository\ServicesRepository"/>
       </argument>
     </service>

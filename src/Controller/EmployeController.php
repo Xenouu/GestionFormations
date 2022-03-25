@@ -85,7 +85,6 @@ class EmployeController extends AbstractController
         }
         return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
     }
-
     /**
      * @Route("/formationAff/", name="app_formationAff")
      */
@@ -132,7 +131,7 @@ class EmployeController extends AbstractController
             $inscription->setStatut('E');
             $inscription->setEmploye($employe);
             $inscription->setFormation($formation);
-            
+
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($inscription);
             $manager->flush();
