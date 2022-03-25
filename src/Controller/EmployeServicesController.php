@@ -30,9 +30,9 @@ class EmployeServicesController extends AbstractController
     }
 
     /**
-     * @Route("/retirerAddEmploye/{idEmploye}/{idService}", name="app_serviceRemoveEmploye")
+     * @Route("/serviceRemoveEmploye/{idEmploye}/{idService}", name="app_serviceRemoveEmploye")
      */
-    public function RetirerServiceForEmploye($idEmploye, $idService)
+    public function RemoveServiceForEmploye($idEmploye, $idService)
     {
         $employe = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
         $service = $this->getDoctrine()->getRepository(Services::class)->find($idService);

@@ -47,17 +47,17 @@ return [
                 .'|/desinscriptionEmployeFormation/([^/]++)(*:253)'
                 .'|/voirEmployeServices/([^/]++)(*:290)'
                 .'|/s(?'
-                    .'|erviceAddEmploye/([^/]++)/([^/]++)(*:337)'
+                    .'|ervice(?'
+                        .'|AddEmploye/([^/]++)/([^/]++)(*:340)'
+                        .'|RemoveEmploye/([^/]++)/([^/]++)(*:379)'
+                    .')'
                     .'|upprimer(?'
-                        .'|Formation/([^/]++)(*:374)'
-                        .'|Inscription/([^/]++)(*:402)'
+                        .'|Formation/([^/]++)(*:417)'
+                        .'|Inscription/([^/]++)(*:445)'
                     .')'
                 .')'
-                .'|/re(?'
-                    .'|tirerAddEmploye/([^/]++)/([^/]++)(*:451)'
-                    .'|fuseInscription/([^/]++)(*:483)'
-                .')'
-                .'|/accepteInscription/([^/]++)(*:520)'
+                .'|/accepteInscription/([^/]++)(*:483)'
+                .'|/refuseInscription/([^/]++)(*:518)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -71,13 +71,13 @@ return [
         205 => [[['_route' => 'app_inscriptionEmployeFormation', '_controller' => 'App\\Controller\\EmployeController::inscriptionEmployeFormation'], ['id'], null, null, false, true, null]],
         253 => [[['_route' => 'app_desinscriptionEmployeFormation', '_controller' => 'App\\Controller\\EmployeController::désinscriptionEmployeFormation'], ['id'], null, null, false, true, null]],
         290 => [[['_route' => 'app_voirEmployeServices', '_controller' => 'App\\Controller\\EmployeController::voirEmployeServices'], ['id'], null, null, false, true, null]],
-        337 => [[['_route' => 'app_serviceAddEmploye', '_controller' => 'App\\Controller\\EmployeServicesController::AjoutServiceForEmploye'], ['idEmploye', 'idService'], null, null, false, true, null]],
-        374 => [[['_route' => 'app_supp_formation', '_controller' => 'App\\Controller\\FormationController::SupprimerFormation'], ['id'], null, null, false, true, null]],
-        402 => [[['_route' => 'app_supp_inscription', '_controller' => 'App\\Controller\\InscriptionController::SupprimerFormation'], ['id'], null, null, false, true, null]],
-        451 => [[['_route' => 'app_serviceRemoveEmploye', '_controller' => 'App\\Controller\\EmployeServicesController::RetirerServiceForEmploye'], ['idEmploye', 'idService'], null, null, false, true, null]],
-        483 => [[['_route' => 'app_refuse_Inscription', '_controller' => 'App\\Controller\\InscriptionController::RefuseInscription'], ['id'], null, null, false, true, null]],
-        520 => [
-            [['_route' => 'app_accepte_Inscription', '_controller' => 'App\\Controller\\InscriptionController::AccepteInscription'], ['id'], null, null, false, true, null],
+        340 => [[['_route' => 'app_serviceAddEmploye', '_controller' => 'App\\Controller\\EmployeServicesController::AjoutServiceForEmploye'], ['idEmploye', 'idService'], null, null, false, true, null]],
+        379 => [[['_route' => 'app_serviceRemoveEmploye', '_controller' => 'App\\Controller\\EmployeServicesController::RemoveServiceForEmploye'], ['idEmploye', 'idService'], null, null, false, true, null]],
+        417 => [[['_route' => 'app_supp_formation', '_controller' => 'App\\Controller\\FormationController::SupprimerFormation'], ['id'], null, null, false, true, null]],
+        445 => [[['_route' => 'app_supp_inscription', '_controller' => 'App\\Controller\\InscriptionController::SupprimerFormation'], ['id'], null, null, false, true, null]],
+        483 => [[['_route' => 'app_accepte_Inscription', '_controller' => 'App\\Controller\\InscriptionController::AccepteInscription'], ['id'], null, null, false, true, null]],
+        518 => [
+            [['_route' => 'app_refuse_Inscription', '_controller' => 'App\\Controller\\InscriptionController::RefuseInscription'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

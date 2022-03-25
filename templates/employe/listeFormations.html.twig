@@ -24,9 +24,9 @@
                 <tr>
                     <br><h2>Liste des Formations Disponibles :</h2><br>
                     <h4>
-                        {# parcours tous les services aux quelles l'employé est adhérent #}
+                        {# parcours tous les services auxquelles l'employé est adhérent #}
                         {% for service in ensServices %}
-                            {# parcours l'ensemble des formations disponible #}
+                            {# parcours l'ensemble des formations disponibles #}
                             {% for formation in ensFormations %}
                                 {% set nonInscrit = true %}
                                 {# SI l'id du produit associé au service en cours est égal à l'id du produit de la formation en cours #}

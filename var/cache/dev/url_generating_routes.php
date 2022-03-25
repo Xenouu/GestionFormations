@@ -23,7 +23,7 @@ return [
     'app_gererEmployes' => [[], ['_controller' => 'App\\Controller\\EmployeController::gererEmployes'], [], [['text', '/gererEmployes']], [], []],
     'app_voirEmployeServices' => [['id'], ['_controller' => 'App\\Controller\\EmployeController::voirEmployeServices'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/voirEmployeServices']], [], []],
     'app_serviceAddEmploye' => [['idEmploye', 'idService'], ['_controller' => 'App\\Controller\\EmployeServicesController::AjoutServiceForEmploye'], [], [['variable', '/', '[^/]++', 'idService', true], ['variable', '/', '[^/]++', 'idEmploye', true], ['text', '/serviceAddEmploye']], [], []],
-    'app_serviceRemoveEmploye' => [['idEmploye', 'idService'], ['_controller' => 'App\\Controller\\EmployeServicesController::RetirerServiceForEmploye'], [], [['variable', '/', '[^/]++', 'idService', true], ['variable', '/', '[^/]++', 'idEmploye', true], ['text', '/retirerAddEmploye']], [], []],
+    'app_serviceRemoveEmploye' => [['idEmploye', 'idService'], ['_controller' => 'App\\Controller\\EmployeServicesController::RemoveServiceForEmploye'], [], [['variable', '/', '[^/]++', 'idService', true], ['variable', '/', '[^/]++', 'idEmploye', true], ['text', '/serviceRemoveEmploye']], [], []],
     'app_formationAjout' => [[], ['_controller' => 'App\\Controller\\FormationController::AjoutFormation'], [], [['text', '/formationAjout/']], [], []],
     'app_gererFormation' => [[], ['_controller' => 'App\\Controller\\FormationController::GererFormation'], [], [['text', '/gererFormation']], [], []],
     'app_supp_formation' => [['id'], ['_controller' => 'App\\Controller\\FormationController::SupprimerFormation'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/supprimerFormation']], [], []],
