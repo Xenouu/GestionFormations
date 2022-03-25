@@ -68,10 +68,10 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         ";
         // line 18
         $this->displayBlock('navbar', $context, $blocks);
-        // line 67
+        // line 71
         echo "        ";
         $this->displayBlock('body', $context, $blocks);
-        // line 69
+        // line 73
         echo "    </body>
 </html>
 ";
@@ -163,37 +163,48 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                         <span class=\"navbar-toggler-icon\"></span>
                     </button>
-                    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
-                        <ul class=\"navbar-nav\">
-                        <li class=\"nav-item\">
-                           <a class=\"nav-link\" href=\"";
-        // line 27
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_formationAff");
-        echo "\">Formation(s) Disponible(s)</a>
+                    ";
+        // line 24
+        $context["lvlEmploye"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 24, $this->source); })()), "session", [], "any", false, false, false, 24), "get", [0 => "employeLvl"], "method", false, false, false, 24);
+        // line 25
+        echo "                    ";
+        if ((0 === twig_compare((isset($context["lvlEmploye"]) || array_key_exists("lvlEmploye", $context) ? $context["lvlEmploye"] : (function () { throw new RuntimeError('Variable "lvlEmploye" does not exist.', 25, $this->source); })()), 0))) {
+            // line 26
+            echo "                        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+                            <ul class=\"navbar-nav\">
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"";
+            // line 29
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gestion_inscription");
+            echo "\">Gestion Inscription</a>
+                        </li>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"";
+            // line 33
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererFormation");
+            echo "\">Gestion Formation</a>
+                        </li>
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"";
+            // line 36
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererEmployes");
+            echo "\">Gestion Employes</a>
                         </li>
                         <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"";
-        // line 30
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gestion_inscription");
-        echo "\">Gestion Inscription</a>
-                    </li>
+                                <a class=\"nav-link\" href=\"";
+            // line 39
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererEmployes");
+            echo "\">Gestion Ajouts</a>
                         </li>
+                        
+                    ";
+        }
+        // line 43
+        echo "                        </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 34
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererFormation");
-        echo "\">Gestion Formation</a>
-                    </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"";
-        // line 37
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_gererEmployes");
-        echo "\">Gestion Employes</a>
-                    </li>
-                        </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"";
-        // line 41
+        // line 45
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_employeDeco");
         echo "\">Déconnexion</a>
                         </li>
@@ -201,7 +212,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                     </div>
                 </nav>
                 ";
-        // line 66
+        // line 70
         echo "            ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -211,7 +222,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     }
 
-    // line 67
+    // line 71
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -221,7 +232,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 68
+        // line 72
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -238,7 +249,7 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
 
     public function getDebugInfo()
     {
-        return array (  225 => 68,  215 => 67,  205 => 66,  197 => 41,  190 => 37,  184 => 34,  177 => 30,  171 => 27,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 69,  72 => 67,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
+        return array (  236 => 72,  226 => 71,  216 => 70,  208 => 45,  204 => 43,  197 => 39,  191 => 36,  185 => 33,  178 => 29,  173 => 26,  170 => 25,  168 => 24,  161 => 19,  151 => 18,  141 => 15,  139 => 14,  129 => 13,  119 => 11,  116 => 9,  106 => 8,  87 => 5,  75 => 73,  72 => 71,  70 => 18,  66 => 16,  64 => 13,  61 => 12,  58 => 8,  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -266,21 +277,25 @@ class __TwigTemplate_a4a2f8ab1d05b6d87d7e6b9cf2e578cb5e4459a74edc9e3d6e0771c5901
                     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                         <span class=\"navbar-toggler-icon\"></span>
                     </button>
-                    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
-                        <ul class=\"navbar-nav\">
-                        <li class=\"nav-item\">
-                           <a class=\"nav-link\" href=\"{{ path('app_formationAff') }}\">Formation(s) Disponible(s)</a>
+                    {% set lvlEmploye = app.session.get('employeLvl') %}
+                    {% if (lvlEmploye == 0) %}
+                        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+                            <ul class=\"navbar-nav\">
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"{{ path('app_gestion_inscription') }}\">Gestion Inscription</a>
+                        </li>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"{{ path('app_gererFormation') }}\">Gestion Formation</a>
+                        </li>
+                            <li class=\"nav-item\">
+                                <a class=\"nav-link\" href=\"{{ path('app_gererEmployes') }}\">Gestion Employes</a>
                         </li>
                         <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('app_gestion_inscription') }}\">Gestion Inscription</a>
-                    </li>
+                                <a class=\"nav-link\" href=\"{{ path('app_gererEmployes') }}\">Gestion Ajouts</a>
                         </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('app_gererFormation') }}\">Gestion Formation</a>
-                    </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('app_gererEmployes') }}\">Gestion Employes</a>
-                    </li>
+                        
+                    {% endif %}
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"{{ path('app_employeDeco') }}\">Déconnexion</a>

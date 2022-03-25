@@ -80,6 +80,7 @@ class EmployeController extends AbstractController
                 $session = new Session();
                 $session->set('employeId', $user[0]->getId());
                 $session->set('employeStatut', $user[0]->getStatut());
+                $session->set('employeLvl', $user[0]->getStatut());
                 return $this->redirectToRoute('app_formationAff', array('statutEmploye' => $user[0]->getStatut()));
             }
         }
