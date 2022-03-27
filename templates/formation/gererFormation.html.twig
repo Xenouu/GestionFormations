@@ -23,16 +23,15 @@
     <tr>
       <th scope="row">{{ formation.produit.libelle }}</th>
       <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
-      <td>{{ formation.nbreHeures }}</td>
+      <td>{{ formation.nbreHeures }}h</td>
       <td>{{ formation.departement }}</td>
       <td>{{ formation.Description }}</td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
-<h3>Ajouter une nouvelle formation :</h3>
 <br/>
-<a class="btn btn-primary" href="{{ path('app_formationAjout') }}">Ajouter</a>
+<a class="btn btn-primary" href="{{ path('app_formationAjout') }}">Ajouter Formation</a>
 </div>
 </div>
 {% endblock %}

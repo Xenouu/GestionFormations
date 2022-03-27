@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Employe;
+use App\Entity\Services;
 use App\Entity\Inscription;
 use App\Form\InscriptionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Serializer;
 
 class InscriptionController extends AbstractController
 {
@@ -49,7 +51,7 @@ class InscriptionController extends AbstractController
             ->findFormationE();
         $message = "";
         if (!($inscriptions)) {
-            $message = "Il n'y a pas de formation en cours";
+            $message = "Il n'y a pas d'inscription en cours";
         }
         return $this->render('inscription/listeInscriptions.html.twig', array('ensInscriptions' => $inscriptions, 'message' => $message));
     }
@@ -67,6 +69,32 @@ class InscriptionController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('app_gestion_inscription');
     }
+
+    /**
+     * @Route("/supprimerInscription/{idEmploye}/{idService}", name="app_supp_inscription_by_formation")
+     */
+    public function SupprimerInscriptionsByService($idEmploye, $idService)
+    {
+        $service = $this->getDoctrine()->getRepository(Services::class)->find($idService);
+        $produitsByService = $service->getProduit();
+        $manager = $this->getDoctrine()->getManager();
+
+        foreach ($produitsByService as $produit)
+        {
+            foreach($produit->getFormations() as $formation)
+            {
+                $searchInscription = $this->getDoctrine()->getRepository(Inscription::class)->findBy( ['employe' => $idEmploye, 'formation' => $formation->getId()], [], 1);
+                if ($searchInscription)
+                {
+                    $manager->remove($searchInscription[0]);
+                    $manager->flush();
+                }
+            }  
+        }
+        
+
+        return $this->redirectToRoute('app_serviceRemoveEmploye', ['idEmploye' => $idEmploye, 'idService'=> $service->getId()]);
+    }
     /**
      * @Route("/accepteInscription/{id}", name="app_accepte_Inscription")
      */
@@ -82,6 +110,7 @@ class InscriptionController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('app_gestion_inscription');
     }
+    
     /**
      * @Route("/refuseInscription/{id}", name="app_refuse_Inscription")
      */

@@ -18,14 +18,17 @@
   </thead>
   <tbody>
 {% for employe in ensEmployes %}
-    <tr>
-      <td>{{ employe.nom }}</td>
-      <td>{{ employe.prenom }}</td>
-      <td><a class="btn btn-primary" href="{{ path('app_voirEmployeServices', {'id' : employe.id }) }}">Voir</a></td>
-    </tr>
+    {% if (employe.statut == 1) %}
+        <tr>
+        <td>{{ employe.nom }}</td>
+        <td>{{ employe.prenom }}</td>
+        <td><a class="btn btn-primary" href="{{ path('app_voirEmployeServices', {'id' : employe.id, 'idServiceRetirer' : 0}) }}">Voir</a></td>
+        </tr>
+    {% endif %}
 {% endfor %}
     </tbody>
 </table>
 </div>
+<a class="btn btn-primary" href="{{ path('app_employeAjoutHash') }}">Ajouter Employé</a>
 </div>
 {% endblock %}

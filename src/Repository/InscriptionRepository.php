@@ -41,7 +41,31 @@ class InscriptionRepository extends ServiceEntityRepository
             ->where('inscription.statut = :e');
         return $queryBuilder->getQUery()->getResult();
     }
-    
+
+    public function findInscriptionByServiceAndEmploye($idEmploye, $idService)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createquery(
+            'SELECT inscription.id
+            FROM App\Entity\Produit p
+            INNER JOIN p.formations f
+            INNER JOIN f.inscriptions i
+            WHERE i.employe = :idEmploye AND p.service = :idService
+            '
+        )
+        ->setParameter('idEmploye', $idEmploye)
+        ->setParameter('idService', $idService)
+        ;
+
+        return $query->getOneOrNullResult();
+    }
+
+// SELECT produit.libelle
+// FROM produit
+// INNER JOIN formation ON formation.produit_id = produit.id
+// INNER JOIN inscription ON inscription.formation_id = formation.id
+// WHERE inscription.employe_id = 14 AND produit.services_id = 9;
     // /**
     //  * @return Inscription[] Returns an array of Inscription objects
     //  */

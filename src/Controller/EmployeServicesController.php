@@ -26,7 +26,7 @@ class EmployeServicesController extends AbstractController
 
         $manager->persist($employe);
         $manager->flush();
-        return $this->redirectToRoute('app_voirEmployeServices', ['id' => $idEmploye]);
+        return $this->redirectToRoute('app_voirEmployeServices', ['id' => $idEmploye, 'idServiceRetirer' => 0]);
     }
 
     /**
@@ -45,6 +45,6 @@ class EmployeServicesController extends AbstractController
 
         $manager->persist($employe);
         $manager->flush();
-        return $this->redirectToRoute('app_voirEmployeServices', ['id' => $idEmploye]);
+        return $this->redirectToRoute('app_voirEmployeServices', ['id' => $idEmploye, 'idServiceRetirer' => 0]);
     }
 }

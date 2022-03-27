@@ -19,6 +19,18 @@ class ServicesRepository extends ServiceEntityRepository
         parent::__construct($registry, Services::class);
     }
 
+    public function findInscriptionEA($idEmploye)
+    {
+        $e = 'E';
+        $a = 'A';
+        $queryBuilder = $this
+            ->createQueryBuilder('inscription')
+            ->setParameter('e', $e)
+            ->setParameter('a', $a)
+            ->setParameter('idEmploye', $idEmploye)
+            ->where('(inscription.statut = :e or inscription.statut = :a) and inscription.employe = :idEmploye');
+        return $queryBuilder->getQUery()->getResult();
+    }
     // /**
     //  * @return Services[] Returns an array of Services objects
     //  */

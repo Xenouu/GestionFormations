@@ -49,7 +49,7 @@ class EmployeController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_employeAjoutHash');
         }
-        return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
+        return $this->render('employe/ajouterEmploye.html.twig', array('form' => $form->createView()));
     }
 
     /**
@@ -81,10 +81,12 @@ class EmployeController extends AbstractController
                 $session->set('employeId', $user[0]->getId());
                 $session->set('employeStatut', $user[0]->getStatut());
                 $session->set('employeLvl', $user[0]->getStatut());
+                if ($user[0]->getStatut() == 0)
+                    return $this->redirectToRoute('app_gestion_inscription');
                 return $this->redirectToRoute('app_formationAff', array('statutEmploye' => $user[0]->getStatut()));
             }
         }
-        return $this->render('employe/editer.html.twig', array('form' => $form->createView()));
+        return $this->render('employe/authentification.html.twig', array('form' => $form->createView()));
     }
     /**
      * @Route("/formationAff/", name="app_formationAff")
@@ -182,7 +184,7 @@ class EmployeController extends AbstractController
         }
         $employes = $this->getDoctrine()->getRepository(Employe::class)->findAll();
         if (!$employes) {
-            $message = "Pas de formation";
+            $message = "Pas de d'employé";
         } else {
             $message = null;
         }
@@ -190,24 +192,32 @@ class EmployeController extends AbstractController
     }
 
     /**
-     * @Route("/voirEmployeServices/{id}", name="app_voirEmployeServices")
+     * @Route("/voirEmployeServices/{id}/{idServiceRetirer}", name="app_voirEmployeServices")
      */
-    public function voirEmployeServices($id)
+    public function voirEmployeServices($id, $idServiceRetirer)
     {
         //Permet de voir les formations d'un employé
         $idEmploye = $this->get('session')->get('employeId');
+
         $userAdmin = $this->getDoctrine()->getRepository(Employe::class)->find($idEmploye);
         $user = $this->getDoctrine()->getRepository(Employe::class)->find($id);
+
+        $inscriptions = $this->getDoctrine()->getRepository(Inscription::class)->findby( ['employe' => $user->getId()], [] );
+        $servicesEmploye = $user->getServices();
+
+        $services = $this->getDoctrine()->getRepository(Services::class)->findAll();
+
         if ($userAdmin->getStatut() == 1) {
             return $this->redirectToRoute('app_formationAff');
         }
-        $services = $this->getDoctrine()->getRepository(Services::class)->findAll();
-        if (!$services) {
-            $message = "Pas d'inscriptions'";
-        } else {
-            $message = null;
-        }
-        $servicesEmploye = $user->getServices();
-        return $this->render('employe/voirEmployesServices.html.twig', array('employe' => $user, 'ensServices' => $services, 'message' => $message, 'ensServicesByEmploye' => $servicesEmploye));
+
+        return $this->render('employe/voirEmployesServices.html.twig', array(
+            'employe' => $user, 
+            'ensServices' => $services,
+            'servicesByEmploye' => $servicesEmploye,
+            'inscriptionsByEmploye' => $inscriptions,
+            'idServiceRetirer' => $idServiceRetirer
+            )
+        );
     }
 }

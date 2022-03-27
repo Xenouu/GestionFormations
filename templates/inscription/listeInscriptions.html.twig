@@ -12,8 +12,11 @@
     <thead>
     <tr>
         <th scope="col">Employé</th>
+        <th scope="col">Produit</th>
+        <th scope="col">Service</th>
         <th scope="col">Nombre d'heures</th>
         <th scope="col">Departement</th>
+        <th scope="col">Date</th>
         <th scope="col">Accepter</th>
         <th scope="col">Refuser</th>
     </tr>
@@ -22,8 +25,11 @@
 {% for inscription in ensInscriptions %}
     <tr>
       <td>{{ inscription.employe.nom }}  {{ inscription.employe.prenom }}</td>
+      <td>{{ inscription.formation.Produit.libelle }}</td>
+      <td>{{ inscription.formation.Produit.Services.nom }}</td>
       <td>{{ inscription.formation.nbreHeures }}h</td>
       <td>{{ inscription.formation.departement }}</td>
+      <td> {{ inscription.formation.dateDebut|date("m/d/Y") }} </td>
       <td><a class="btn btn-success" href="{{ path('app_accepte_Inscription', {'id' : inscription.id }) }}">Accepter</a></td>
       <td><a class="btn btn-danger" href="{{ path('app_refuse_Inscription', {'id' : inscription.id }) }}">Refuser</a></td>  
     </tr>

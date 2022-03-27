@@ -3,8 +3,18 @@
 {% block title %}Formation Inscrit{% endblock %}
 {% block body %}
     </br>
-    {% if (message) %}
-        {{ message }}
+    {% if (idServiceRetirer) %}
+        <div class="card position-absolute top-50 start-50 translate-middle shadow-lg " style="width: 18rem;">
+            <div class="card-body">
+                <h5 align="center" class="card-title">Attention !</h5>
+                <h6 align="center" class="card-subtitle mb-2 text-muted">Cet employé est inscrit à des formations de ce service</h6>
+                <p class="card-text my-4">Voulez vous lui retirer ce service ?</p>
+                <div align="center" >
+                    <td><a class="btn btn-danger" href="{{path('app_supp_inscription_by_formation', { 'idEmploye': employe.id, 'idService': idServiceRetirer }) }}">Retirer</a></td>
+                    <a class="btn btn-light" href="{{ path('app_voirEmployeServices', {'id' : employe.id, 'idServiceRetirer' : 0}) }}">Annuler</a>
+                </div>
+            </div>
+        </div>
     {% endif %}
 <div class="container" align="center">
 <div class="shadow-lg p-3 mb-5 bg-body rounded" align="left">
@@ -15,25 +25,54 @@
     <thead>
     <tr>
         <th scope="col">Services</th>
-        <th scope="col">Gérer</th>
         <th scope="col">Statut</th>
+        <th scope="col">Nombre de formations inscrits</th>
+        <th scope="col">Gérer</th>
     </tr>
   </thead>
   <tbody>
+  {# Parcours tous les services #}
 {% for service in ensServices %}
     {% set boolEmploye = true %}
     <tr>
         <td>{{ service.nom }}</td>
-        {% for serviceByEmploye in ensServicesByEmploye %}
+        {# Parcours touus les services de l'employé #}
+        {% for serviceByEmploye in servicesByEmploye %}
+                {# SI l'employé possède ce service #}
+                {# L'employé est adhérent #}
                 {% if (service.id == serviceByEmploye.id) %}
-                    <td><a class="btn btn-danger" href="{{path('app_serviceRemoveEmploye', { 'idEmploye': employe.id, 'idService': service.id })}}">Retirer</a></td>
                     <td>Adhérent</td>
+                    <td>
+                        {% set nbInscription = 0 %}
+                        {# Compter le nombre de formations auxquelles l'employé est inscrit #}
+                        {# Parcours tous les produits de chaque service de l'employé #}
+                        {% for produitDuService in serviceByEmploye.produit %}
+                            {# Parcours toutes les inscriptions de l'employé #}
+                            {% for inscription in inscriptionsByEmploye %}
+                                {# 
+                                    SI le produit de la formation de l'inscription en cours == l'un des produits du service en cours 
+                                    ALORS augmente le nombre d'inscription 
+                                #}
+                                {% if  (inscription.formation.produit.id == produitDuService.id) %}
+                                    {% set nbInscription = nbInscription + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        {% if nbInscription != 0 %}
+                            {{ nbInscription }} 
+                            <td><a class="btn btn-danger" href="{{ path('app_voirEmployeServices', {'id' : employe.id, 'idServiceRetirer' : service.id}) }}">Retirer</a></td>
+                        {% else %}
+                            0
+                            <td><a class="btn btn-danger" href="{{path('app_serviceRemoveEmploye', { 'idEmploye': employe.id, 'idService': service.id }) }}">Retirer</a></td>
+                        {% endif %}
+                    </td>
                     {% set boolEmploye = false %}
                 {% endif %}
         {% endfor %}
         {% if (boolEmploye) %}
-            <td><a class="btn btn-success" href="{{path('app_serviceAddEmploye', { 'idEmploye': employe.id, 'idService': service.id })}}">Ajouter</a></td>
             <td>Non Adhérent</td>
+            <td>0</td>
+            <td><a class="btn btn-success" href="{{path('app_serviceAddEmploye', { 'idEmploye': employe.id, 'idService': service.id }) }}">Ajouter</a></td>
         {% endif %}
       <td>
     </tr>
