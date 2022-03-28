@@ -79,20 +79,22 @@ class InscriptionController extends AbstractController
         $produitsByService = $service->getProduit();
         $manager = $this->getDoctrine()->getManager();
 
+        // Parcours tous les produits du service
         foreach ($produitsByService as $produit)
-        {
+        {   
+            // parcours toutes les formations du produit en cours
             foreach($produit->getFormations() as $formation)
             {
+                // recherche si l'inscription existe
                 $searchInscription = $this->getDoctrine()->getRepository(Inscription::class)->findBy( ['employe' => $idEmploye, 'formation' => $formation->getId()], [], 1);
                 if ($searchInscription)
                 {
+                    // retire l'inscription
                     $manager->remove($searchInscription[0]);
                     $manager->flush();
                 }
             }  
         }
-        
-
         return $this->redirectToRoute('app_serviceRemoveEmploye', ['idEmploye' => $idEmploye, 'idService'=> $service->getId()]);
     }
     /**
